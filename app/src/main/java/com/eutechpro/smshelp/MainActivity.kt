@@ -8,7 +8,6 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -23,7 +22,6 @@ import java.util.*
 
 
 class MainActivity : AppCompatActivity(),Mvp.View {
-    private val TAG = "MainActivity"
     private var statusMessage: TextView? = null
     private var fab: FloatingActionButton? = null
     private var presenter: Mvp.Presenter? = null
@@ -83,11 +81,11 @@ class MainActivity : AppCompatActivity(),Mvp.View {
 
     private fun initDrawer() {
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
-        val toggle = ActionBarDrawerToggle(this, drawer, findViewById(R.id.toolbar) as Toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        val toggle = ActionBarDrawerToggle(this, drawer, find(R.id.toolbar), R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
-        val navigationView = findViewById(R.id.nav_view) as NavigationView
+        val navigationView:NavigationView = find(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 //todo add listeners for drawer menu
@@ -99,7 +97,7 @@ class MainActivity : AppCompatActivity(),Mvp.View {
 
 
     override fun onBackPressed() {
-        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
+        val drawer:DrawerLayout = find(R.id.drawer_layout)
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
