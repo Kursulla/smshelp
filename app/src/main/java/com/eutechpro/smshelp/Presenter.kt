@@ -1,10 +1,10 @@
 package com.eutechpro.smshelp
 
 import android.view.View
+import org.jetbrains.anko.AnkoLogger
 import rx.subscriptions.CompositeSubscription
 
-internal class Presenter(val model: Mvp.Model) : Mvp.Presenter {
-    private val TAG = "Presenter"
+internal class Presenter(val model: Mvp.Model) : Mvp.Presenter, AnkoLogger {
     var view: Mvp.View? = null
     val subscriptions = CompositeSubscription()
     override fun bindView(v: Mvp.View) {

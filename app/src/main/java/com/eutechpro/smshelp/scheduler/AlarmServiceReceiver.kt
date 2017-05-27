@@ -3,13 +3,12 @@ package com.eutechpro.smshelp.scheduler
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.util.Log
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.debug
 
-class AlarmServiceReceiver : BroadcastReceiver() {
-    private val TAG: String = "AlarmServiceReceiver"
-
+class AlarmServiceReceiver : BroadcastReceiver(), AnkoLogger {
     override fun onReceive(context: Context?, intent: Intent?) {
-        Log.d(TAG, "Send.....")
+        debug( "Send.....")
 
     }
 

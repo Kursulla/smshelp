@@ -19,7 +19,7 @@ internal interface Mvp {
         fun setStatusNotScheduled()
     }
     interface Presenter{
-        fun bindView(view:Mvp.View)
+        fun bindView(v:Mvp.View)
         fun unBindView()
         fun scheduled(viewToAttachSnackBarTo: android.view.View)
 

@@ -18,6 +18,7 @@ import com.eutechpro.smshelp.extensions.SharedPreferencesForScheduler
 import com.eutechpro.smshelp.extensions.snackbar
 import com.eutechpro.smshelp.persistance.PreferencesPersistence
 import com.eutechpro.smshelp.scheduler.AlarmScheduler
+import org.jetbrains.anko.find
 import java.util.*
 
 
@@ -30,11 +31,11 @@ class MainActivity : AppCompatActivity(),Mvp.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
+        setSupportActionBar(find(R.id.toolbar))
         initDrawer()
 
-        statusMessage = findViewById(R.id.status_message) as TextView
-        fab = findViewById(R.id.fab) as FloatingActionButton
+        statusMessage = find(R.id.status_message)
+        fab = find(R.id.fab)
 
         //todo inject
         presenter = Presenter(Model(PreferencesPersistence(SharedPreferencesForScheduler()), AlarmScheduler(applicationContext)))

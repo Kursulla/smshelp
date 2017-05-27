@@ -4,18 +4,18 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.Log
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.debug
 import java.util.*
 
 /**
  * Used to schedule and un schedule sending of SMS at certain date.
  */
-class AlarmScheduler(val context: Context) {
-    private val TAG: String = "SmsScheduler"
+class AlarmScheduler(val context: Context):AnkoLogger {
     private val FREQUENCY_INTERVAL = 1000 * 10L
 
     fun scheduleNextAlarm(dateToFireAlarm: Date, alarmId: Int) {
-        Log.d(TAG, "Schedule Next Alarm for " + dateToFireAlarm.toString())
+        debug("Schedule Next Alarm for " + dateToFireAlarm.toString())
 
         referenceToAlarmManager().setInexactRepeating(
                 AlarmManager.RTC_WAKEUP,
@@ -25,7 +25,7 @@ class AlarmScheduler(val context: Context) {
     }
 
     fun unScheduleNextAlarm(alarmId: Int) {
-        Log.d(TAG, "Un Schedule Next Alarm")
+        debug("Un Schedule Next Alarm")
         referenceToAlarmManager().cancel(pendingIntentToFireOnAlarmEvent(alarmId))
     }
 

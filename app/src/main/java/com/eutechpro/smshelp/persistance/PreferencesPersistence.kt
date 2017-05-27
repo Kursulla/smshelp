@@ -1,20 +1,20 @@
 package com.eutechpro.smshelp.persistance
 
 import android.content.SharedPreferences
-import android.util.Log
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.debug
 import rx.Observable
 import java.util.*
 
-@Suppress("ReplaceCallWithComparison")
+@Suppress("ReplaceCallWithComparison", "DEPRECATION")
 /**
  * Persist data in SharedPreferences
  */
-class PreferencesPersistence(private val preferences: SharedPreferences) : Persistence {
-    private val TAG = "PreferencesPersistence"
+class PreferencesPersistence(private val preferences: SharedPreferences) : Persistence, AnkoLogger {
     override fun keyExists(key: String): Observable<Boolean> {
         return Observable.create {
             val exists = preferences.getLong(key,0).compareTo(0) != 0
-            Log.d(TAG, "keyExists:$exists")
+            debug("keyExists:$exists")
             it.onNext(exists)
             it.onCompleted()
         }
@@ -23,7 +23,7 @@ class PreferencesPersistence(private val preferences: SharedPreferences) : Persi
     override fun storeDate(key: String, date: Date): Observable<Boolean> {
         return Observable.create<Boolean> {
             val stored = preferences.edit().putLong(key, date.time).commit()
-            Log.d(TAG, "stored:$stored")
+            debug("stored:$stored")
             it.onNext(stored)
             it.onCompleted()
         }
@@ -36,7 +36,7 @@ class PreferencesPersistence(private val preferences: SharedPreferences) : Persi
                 it.onError(IllegalStateException("It looks like there is no stored Date for specified key:$key"))
             }
             val readedDate = Date(dateInMillis)
-            Log.d(TAG, "readDate:$readedDate")
+            debug("readDate:$readedDate")
             it.onNext(readedDate)
             it.onCompleted()
         }
@@ -45,7 +45,7 @@ class PreferencesPersistence(private val preferences: SharedPreferences) : Persi
     override fun removeDate(key: String): Observable<Boolean> {
         return Observable.create<Boolean> {
             val removed = preferences.edit().remove(key).commit()
-            Log.d(TAG, "removeDate:$removed")
+            debug("removeDate:$removed")
             it.onNext(removed)
             it.onCompleted()
         }
