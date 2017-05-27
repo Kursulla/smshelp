@@ -1,22 +1,45 @@
 package com.eutechpro.smshelp
 
 import android.view.View
+import rx.subscriptions.CompositeSubscription
 
-class Presenter(val model: Mvp.Model) : Mvp.Presenter {
+internal class Presenter(val model: Mvp.Model) : Mvp.Presenter {
+    private val TAG = "Presenter"
     var view: Mvp.View? = null
+    val subscriptions = CompositeSubscription()
+    override fun bindView(v: Mvp.View) {
+        view = v
+        subscriptions.add(model.isScheduledStream().subscribe {
+            if (it) {
+                model.nextScheduledDateStream().subscribe {
+                    view?.setStatusScheduled(it)
+                }
+            } else {
+                view?.setStatusNotScheduled()
+            }
+        })
+    }
 
     override fun unBindView() {
         view = null
+        subscriptions.clear()
     }
 
 
-    override fun bindView(view: Mvp.View) {
-        this.view = view
+
+    override fun checkScheduleStatus() {
+        model.checkStatus()
     }
 
-    override fun addNewSmsAction(viewToAttachSnackBarTo: View) {
-
-        view?.showSnackBar(R.string.nav_become_donator, viewToAttachSnackBarTo)
+    override fun scheduled(viewToAttachSnackBarTo: View) {
+        view?.showSnackBar(R.string.nav_become_donator, viewToAttachSnackBarTo)//unused for now
     }
 
+    override fun schedule() {
+        model.schedule()
+    }
+
+    override fun unSchedule() {
+        model.unSchedule()
+    }
 }

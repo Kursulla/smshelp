@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -13,31 +12,73 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import com.eutechpro.smshelp.sms.SmsControll
+import android.widget.TextView
+import com.eutechpro.smshelp.extensions.Formated
+import com.eutechpro.smshelp.extensions.SharedPreferencesForScheduler
+import com.eutechpro.smshelp.extensions.snackbar
+import com.eutechpro.smshelp.persistance.PreferencesPersistence
+import com.eutechpro.smshelp.scheduler.AlarmScheduler
+import java.util.*
+
 
 class MainActivity : AppCompatActivity(),Mvp.View {
-    var fab:FloatingActionButton? = null
-    val presenter: Mvp.Presenter = Presenter(Model())
+    private val TAG = "MainActivity"
+    private var statusMessage: TextView? = null
+    private var fab: FloatingActionButton? = null
+    private var presenter: Mvp.Presenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar) as Toolbar)
         initDrawer()
-//            val smsManager = SmsManager.getDefault()
-//            smsManager.sendTextMessage("+4917637206586", null, "sms message", null, null)
-        presenter.bindView(this)
 
+        statusMessage = findViewById(R.id.status_message) as TextView
         fab = findViewById(R.id.fab) as FloatingActionButton
-        fab?.setOnClickListener { view ->
-            presenter.addNewSmsAction(view)
+
+        //todo inject
+        presenter = Presenter(Model(PreferencesPersistence(SharedPreferencesForScheduler()), AlarmScheduler(applicationContext)))
+        presenter?.bindView(this)
+        presenter?.checkScheduleStatus()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter?.unBindView()
+    }
+
+    override fun setStatusScheduled(date: Date) {
+        statusMessage?.text = getString(R.string.status_scheduled, date.Formated(date))
+        fab?.setImageResource(R.drawable.ic_menu_manage)
+        fab?.setOnClickListener {
+            snackbar(R.string.snack_unscheduled, it)
+            presenter?.unSchedule()
         }
 
+    }
 
-        val smsControll = SmsControll()
-        smsControll.scheduleNextAlarm(this)
+    override fun setStatusNotScheduled() {
+        statusMessage?.setText(R.string.status_not_scheduled)
+        fab?.setImageResource(R.drawable.ic_menu_send)
+        fab?.setOnClickListener {
+            snackbar(R.string.snack_scheduled, it)
+            presenter?.schedule()
+        }
 
     }
+
+    override fun showSnackBar(@StringRes messageId: Int, anchor: View) {
+        snackbar(messageId, anchor)
+    }
+
+
+
+
+
+
+
+
+
 
     private fun initDrawer() {
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
@@ -54,20 +95,6 @@ class MainActivity : AppCompatActivity(),Mvp.View {
             true
         }
     }
-
-    override fun showSnackBar(@StringRes messageId: Int, anchor: View){
-        Snackbar.make(anchor, messageId, Snackbar.LENGTH_LONG).setAction("Action", null).show()
-    }
-
-
-
-
-
-
-
-
-
-
 
 
     override fun onBackPressed() {

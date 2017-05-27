@@ -2,9 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.eutechpro.smshelp"
     >
-    
+    v<uses-sdk android:minSdkVersion="11" android:targetSdkVersion="18" />
     <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!--<uses-permission android:name="android.permission.WAKE_LOCK"/>-->
+    <!--<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>-->
+    
+    <!--<uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>-->
+    <!--<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>-->
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
     
     <application
         android:allowBackup="true"
@@ -27,7 +32,7 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name=".sms.AlarmServiceReceiver" android:process=":remote"
+            android:name=".scheduler.AlarmServiceReceiver"
             />
     </application>
 

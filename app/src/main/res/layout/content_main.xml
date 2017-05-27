@@ -9,5 +9,18 @@
     tools:context="com.eutechpro.smshelp.MainActivity"
     tools:showIn="@layout/app_bar_main"
     >
-
+    
+    <TextView
+        android:id="@+id/status_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_marginLeft="8dp" android:layout_marginRight="8dp"
+        android:layout_marginTop="20dp"
+        android:lineSpacingExtra="8sp"
+        android:lines="3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Sledece slanje sms je ..."
+        android:textAlignment="center"
+        />
 </android.support.constraint.ConstraintLayout>
