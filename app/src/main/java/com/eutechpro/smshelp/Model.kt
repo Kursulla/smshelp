@@ -9,7 +9,7 @@ import rx.subjects.PublishSubject
 import java.util.*
 
 
-internal class Model(val persistence: Persistence, val smsScheduler: AlarmScheduler) : Mvp.Model, AnkoLogger {
+internal open class Model(val persistence: Persistence, val smsScheduler: AlarmScheduler) : Mvp.Model, AnkoLogger {
     private val SMS_NUMBER = "1234"
     private val isScheduledStream:PublishSubject<Boolean>  = PublishSubject.create()
 

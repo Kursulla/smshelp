@@ -5,7 +5,7 @@ import rx.Observable
 import java.util.*
 
 
-internal interface Mvp {
+interface Mvp {
     interface Model{
         fun isScheduledStream(): Observable<Boolean>
         fun nextScheduledDateStream(): Observable<Date>
@@ -17,6 +17,7 @@ internal interface Mvp {
         fun showSnackBar(@StringRes messageId: Int, anchor: android.view.View)
         fun setStatusScheduled(date: Date)
         fun setStatusNotScheduled()
+        fun showError(@StringRes errorString: Int)
     }
     interface Presenter{
         fun bindView(v:Mvp.View)

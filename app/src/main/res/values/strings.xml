@@ -2,15 +2,21 @@
     <string name="app_name">SMS Pomoc</string>
     <string name="title_activity_main2">Main2Activity</string>
     
+    <!--Navigation-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    
     <string name="action_settings">Settings</string>
     <string name="nav_donate_sms">Doniraj SMS</string>
     <string name="nav_become_volunteer">Postani volonter</string>
     <string name="nav_become_donator">Postani donator</string>
     <string name="status_scheduled">Sledece slanje SMS poruke je zakazano za \n%1$s</string>
     <string name="status_not_scheduled">Jos uvek niste ukljucili mesecno slanje poruke</string>
+    
+    <!--Snacks/Toasts-->
     <string name="snack_unscheduled">Uklonili ste zakazano slanje poruke!</string>
     <string name="snack_scheduled">Zakazali ste automatsko slanje poruke sledeceg meseca</string>
+    
+    
+    <!--Error messages-->
+    <string name="error_cant_check_subscription">Nismo u mogucnosti da odredimo da li ste zakazali slanje</string>
 </resources>

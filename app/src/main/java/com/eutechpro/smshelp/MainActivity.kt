@@ -18,6 +18,7 @@ import com.eutechpro.smshelp.extensions.snackbar
 import com.eutechpro.smshelp.persistance.PreferencesPersistence
 import com.eutechpro.smshelp.scheduler.AlarmScheduler
 import org.jetbrains.anko.find
+import org.jetbrains.anko.toast
 import java.util.*
 
 
@@ -50,7 +51,10 @@ class MainActivity : AppCompatActivity(),Mvp.View {
         statusMessage?.text = getString(R.string.status_scheduled, date.Formated(date))
         fab?.setImageResource(R.drawable.ic_menu_manage)
         fab?.setOnClickListener {
-            snackbar(R.string.snack_unscheduled, it)
+            snackbar(R.string.snack_unscheduled, it, {
+                toast("Undoooo")
+                presenter?.schedule()
+            })
             presenter?.unSchedule()
         }
 
@@ -60,24 +64,24 @@ class MainActivity : AppCompatActivity(),Mvp.View {
         statusMessage?.setText(R.string.status_not_scheduled)
         fab?.setImageResource(R.drawable.ic_menu_send)
         fab?.setOnClickListener {
-            snackbar(R.string.snack_scheduled, it)
+            snackbar(R.string.snack_scheduled, it, {
+                toast("Undoooo")
+                presenter?.unSchedule()
+            })
             presenter?.schedule()
         }
 
     }
 
     override fun showSnackBar(@StringRes messageId: Int, anchor: View) {
-        snackbar(messageId, anchor)
+        snackbar(messageId, anchor, {
+            toast("Undoooo")
+        })
     }
 
-
-
-
-
-
-
-
-
+    override fun showError(errorString: Int) {
+        throw UnsupportedOperationException("This method is still not implemented")
+    }
 
     private fun initDrawer() {
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
