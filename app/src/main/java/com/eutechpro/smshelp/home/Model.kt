@@ -1,4 +1,4 @@
-package com.eutechpro.smshelp
+package com.eutechpro.smshelp.home
 
 import com.eutechpro.smshelp.persistance.Persistence
 import com.eutechpro.smshelp.scheduler.AlarmScheduler
@@ -11,7 +11,7 @@ import java.util.*
 
 internal open class Model(val persistence: Persistence, val smsScheduler: AlarmScheduler) : Mvp.Model, AnkoLogger {
     private val SMS_NUMBER = "1234"
-    private val isScheduledStream:PublishSubject<Boolean>  = PublishSubject.create()
+    private val isScheduledStream: PublishSubject<Boolean> = PublishSubject.create()
 
 
     override fun nextScheduledDateStream(): Observable<Date> {

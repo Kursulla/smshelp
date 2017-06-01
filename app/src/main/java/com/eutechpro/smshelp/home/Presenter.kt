@@ -1,12 +1,10 @@
-package com.eutechpro.smshelp
+package com.eutechpro.smshelp.home
 
-import android.view.View
-import org.jetbrains.anko.AnkoLogger
-import rx.subscriptions.CompositeSubscription
+import com.eutechpro.smshelp.R
 
-internal class Presenter(val model: Mvp.Model) : Mvp.Presenter, AnkoLogger {
+internal class Presenter(val model: Mvp.Model) : Mvp.Presenter, org.jetbrains.anko.AnkoLogger {
     var view: Mvp.View? = null
-    val subscriptions = CompositeSubscription()
+    val subscriptions = rx.subscriptions.CompositeSubscription()
 
     override fun bindView(v: Mvp.View) {
         view = v
@@ -36,7 +34,7 @@ internal class Presenter(val model: Mvp.Model) : Mvp.Presenter, AnkoLogger {
         model.checkStatus()
     }
 
-    override fun scheduled(viewToAttachSnackBarTo: View) {
+    override fun scheduled(viewToAttachSnackBarTo: android.view.View) {
         view?.showSnackBar(R.string.snack_scheduled, viewToAttachSnackBarTo)//unused for now
     }
 
