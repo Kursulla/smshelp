@@ -75,6 +75,49 @@ Ukoliko Upravni odbor usvoji predlog lekarske komisije za kontrolu i odobravanje
 Fondacija <b>„Podrži život“</b> po ispostavljenom predračunu, novac uplaćuje direktno ustanovama koje su izdale predračun, nikada porodicama direktno.
 <br/><br/>
 Dokumentaciju možete dostaviti i preporučenom pošiljkom na adresu <br/><b><i>Mitropolita Petra 15, 11000 Beograd, Fondacija “Podrži život”</i></b>
-
     ]]></string>
+    
+    
+    <!--About us-->
+    <string name="about_us_activity_title">O Fondaciji</string>
+    
+    <string name="about_us_founders_title">Osnivači</string>
+    <string name="about_us_founders_sergej">Sergej Trifunović</string>
+    <string name="about_us_founders_verica">Verica Šegan</string>
+    
+    <string name="about_us_board_title">Upravni odbor</string>
+    <string name="about_us_board_sergej">Sergej Trifunović – predsednik UO (glumac)</string>
+    <string name="about_us_board_basara">Svetislav Basara (književnik)</string>
+    <string name="about_us_board_dragan">Dragan Jaćimović (alpinista)</string>
+    <string name="about_us_board_paspalj">Žarko Paspalj (košarkaš)</string>
+    <string name="about_us_board_bozovic">Prof. dr Radoslav Božović (sociolog)</string>
+    
+    <string name="about_us_mission_title">Misija</string>
+    <string name="about_us_mission_text"><![CDATA[Osmeh, radost i bezbrižnost naše dece moguće je osigurati kroz podršku u kriznim situacijama oboleloj i siromašnoj deci, kao i njihovim porodicama.
+        <br/>
+Mi nismo nemi posmatrači i svesni smo ograničenja koja institucije imaju i zato stvaramo mogućnosti na angažovanju šire zajednice kako bi se osiguralo da humane osobe koje žele da podrže naše napore, imaju mogućnost da to i učine.
+        <br/>
+Ponosni smo na raznolikost kultura i verovanja svih građana Srbije i duboko verujemo da se svaka razlika može prevazići u istoj želji i htenjima. Zato verujemo da nas te razlike mogu povezati da istrajemo u naporima koje ulažemo.
+        <br/>
+Svaki pojedinac nam je važan i svaki zadatak nam je prioritet. Verujemo da samo radeći zajedno, možemo ostvariti prava naše dece na bolji život i lepšu budućnost.]]></string>
+    <string name="about_us_vission_title">Vizija</string>
+    <string name="about_us_vission_text"><![CDATA[Budućnost ne možemo da predvidimo, ali uradićemo sve da je imaju sva deca Srbije.
+Verujemo u samo jednu budućnost. Budućnost u kojoj deca odrastaju dostojanstveno. Tu budućnost možemo da ostvarimo zajedno stvarajući krug podrške onima kojima je naša pomoć neophodna i potrebna.
+        <br/>
+Uključenost svih građana, osiguranje je jednakosti i zagarantovanih prava svakog deteta na budućnost bez obzira na materijalni status porodice i društva.
+        Srećna i bezbrižna deca najsigurniji su temelj budućnosti svakog naroda u svetu. Uz istrajnost, podršku, saosećanje i razumevanje cele društvene zajednice, gradimo svakog pojedinca, gradimo i nas same.
+        <br/>
+Ocenjujući napredak i uz kontinuirani rad, ali i proveru prioriteta, odlučni smo u nameri da našoj deci ostvarimo bolju Srbiju za sve građane.]]></string>
+    
+    <string name="about_us_goals_title">Ciljevi</string>
+    <string name="about_us_goals_text"><![CDATA[Zdrava, srećna i bezbrižna deca su naš jedini cilj.
+        <br/>
+Ostvarićemo ga kroz unapređenje socijalne i zdravstvene zaštite dece u Srbiji, sprovodeći različite humanitarne aktivnosti.
+        <br/>
+Podrška oboleloj deci i njihovim porodicama u cilju lečenja, medicinskog zbrinjavanja i oporavka, promovisanje i unapređenje sistema dečije zdravstvene zaštite u Srbiji, je osnovni cilj naše fondacije.
+        <br/>
+Budućnost i životne mogućnosti dece u Srbiji, koja nisu odredjena siromaštvom, teškim bolestima, načinom na koji žive, lokacijom, nacionalnošću i veroispovesti, naš je siguran put u zdravo i uspešno društvo.
+        <br/>
+Mi imamo cilj i na kraju prihvatamo samo jednu nagradu – osmeh i radost na licima onih kojima smo potrebni. Taj osmeh i ta radost nemaju cenu i njihovu vrednost znaju samo oni koji su pomažući drugima, postali ponosni vlasnici mnogo osmeha.]]></string>
+
 </resources>

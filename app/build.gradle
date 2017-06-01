@@ -28,8 +28,6 @@ android {
 
     productFlavors {
         prod {
-            // Assigns this product flavor to the 'color' flavor dimension.
-            // This step is optional if you are using only one dimension.
             dimension "type"
             minSdkVersion 16
         }
@@ -56,15 +54,15 @@ dependencies {
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    //Temporary b/c Mockito is fucked up with Kotlin
+    
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'org.jetbrains.anko:anko-commons:0.10.0'
     compile 'io.reactivex:rxjava:1.3.0'
+
     testCompile 'junit:junit:4.12'
-    testCompile 'com.nhaarman:mockito-kotlin:1.4.0'
+    testCompile 'com.nhaarman:mockito-kotlin:1.4.0'    //Temporary b/c Mockito is fucked up with Kotlin
     testCompile 'org.mockito:mockito-core:2.8.9'
 }
 configurations.all {
