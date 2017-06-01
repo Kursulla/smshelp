@@ -37,6 +37,12 @@
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
             />
+        <activity
+            android:name=".become_volunteer.NeedHelpActivity"
+            android:label="@string/need_help_activity_title"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
     
         <receiver android:name=".scheduler.AlarmServiceReceiver"/>
     </application>

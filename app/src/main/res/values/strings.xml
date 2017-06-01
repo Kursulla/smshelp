@@ -52,4 +52,29 @@ ili na broj telefona <a href="tel:0114089785">011/4089-785</a>.
 ]]></string>
     
     
+    <!-- Need help?-->
+    <string name="need_help_activity_title">Podrži život</string>
+    <string name="need_help_title">Treba ti pomoć?</string>
+    <string name="need_help_description"><![CDATA[
+        Da biste aplicirali za humanitarnu pomoć fondacije <b>„Podrži život“</b>,
+neophodno je da dostavite sledeću dokumentaciju:
+<br/>
+<br/> - Popunjenu molbu koju možete preuzeti OVDE
+<br/> - Kompletno skeniranu lekarsku dokumentaciju deteta
+<br/> - Predračun iz klinike ili apoteke
+<br/> - Potvrda državnih fondova za odbijanje pružanja sredstava
+
+<br/><br/>
+Ovu dokumentaciju pošaljite na E-mail: <a href="mailto:sekretar@podrzizivot.com">sekretar@podrzizivot.com</a>
+<br/><br/>
+
+
+Dostavljena dokumentacija će biti prosleđena lekarskoj komisiji za kontolu i odobravanje humanitarne pomoći, a nakon toga Upravnom odboru.
+Ukoliko Upravni odbor usvoji predlog lekarske komisije za kontrolu i odobravanje humanitarne pomoći, pokreće se humanitarna akcija za dete i dodeljuje humanitarni SMS broj <b>5757</b>
+<br/><br/>
+Fondacija <b>„Podrži život“</b> po ispostavljenom predračunu, novac uplaćuje direktno ustanovama koje su izdale predračun, nikada porodicama direktno.
+<br/><br/>
+Dokumentaciju možete dostaviti i preporučenom pošiljkom na adresu <br/><b><i>Mitropolita Petra 15, 11000 Beograd, Fondacija “Podrži život”</i></b>
+
+    ]]></string>
 </resources>

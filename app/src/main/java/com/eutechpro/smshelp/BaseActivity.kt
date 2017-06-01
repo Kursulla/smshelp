@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.eutechpro.smshelp.become_volunteer.BecomeDonatorActivity
 import com.eutechpro.smshelp.become_volunteer.BecomeVolunteerActivity
+import com.eutechpro.smshelp.become_volunteer.NeedHelpActivity
 import home.HomeActivity
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
@@ -26,6 +27,7 @@ open class BaseActivity : AppCompatActivity() {
                 R.id.nav_donate_sms -> startActivity<HomeActivity>()
                 R.id.nav_become_volunteer -> startActivity<BecomeVolunteerActivity>()
                 R.id.nav_become_donator -> startActivity<BecomeDonatorActivity>()
+                R.id.nav_need_help -> startActivity<NeedHelpActivity>()
             }
             drawer.closeDrawer(GravityCompat.START)
             true
