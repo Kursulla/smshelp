@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">SMS Pomoc</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="app_name">Podrži život</string>
+    <string name="home_activity_title">Podrži život</string>
     
     <!--Navigation-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -19,4 +19,37 @@
     
     <!--Error messages-->
     <string name="error_cant_check_subscription">Nismo u mogucnosti da odredimo da li ste zakazali slanje</string>
+    
+    <!-- Become volunteer-->
+    <string name="become_volunteer_activity_title">Podrzi zivot</string>
+    <string name="become_volunteer_title">Postani volonter</string>
+    <string name="become_volunteer_description"><![CDATA[
+    Fondacija <b>„Podrži život“</b> vas poziva da postanete deo našeg tima!
+    <br/>Popunite Anketu za volontere OVDE i pošaljite je na E-mail: <a href="mailto:volonteri@podrzizivot.com">volonteri@podrzizivot.com</a>
+    <br/>Nakon poslate ankete, očekujte poziv na upoznavanje i razgovor sa zaposlenima u fondaciji, gde će vam detaljno biti objašnjeno koji su tačno poslovi volontera.
+]]></string>
+    <string name="become_volunteer_moto">Volonteri su uvek dobrodošli i potrebni</string>
+    
+    <!-- Become donator-->
+    <string name="become_donator_activity_title">Podrži život</string>
+    <string name="become_donator_title">Postani donator</string>
+    <string name="become_donator_description"><![CDATA[
+    Fondacija <b>„Podrži život“</b> donacije prima <u>isključivo</u> putem SMS poruka na broj <b>5757</b> i uplatama na tekući dinarski i devizni račun fondacije „Podrži život“.
+    <br/><br/>
+ - Dinarski tekući račun: <b><i>205-999-98</i></b>
+<br/><br/>
+Informacije o uplati na devizni račun:
+<br/> - <a href = "http://www.podrzizivot.com/wp-content/uploads/2016/12/Uputstvo-za-uplatu-EUR.pdf">Uputstvo za uplatu iz inostranstva (EUR)</a></li>
+<br/> - <a href = "http://www.podrzizivot.com/wp-content/uploads/2016/12/Uputstvo-za-uplatu-USD.pdf">Uputstvo za uplatu iz inostranstva (USD)</a></li>
+
+<br/><br/>
+Ukoliko želite da postanete naš donator na mesečnom ili godišnjem nivou i pomognete bolesnoj deci,
+kontaktirajte nas putem E-mail adrese: <a href="mailto:kontakt@podrzizivot.com>kontakt@podrzizivot.com</a>
+ili na broj telefona <a href="tel:0114089785">011/4089-785</a>.
+<br/><br/>
+<b><u>Ukoliko vas neko kontaktira radi donacija na bilo koji drugi način, sem navedenog, molimo vas da nam se obratite na broj telefona <a href="tel:0114089785">011/4089-785</a>.</b></u>
+
+]]></string>
+    
+    
 </resources>

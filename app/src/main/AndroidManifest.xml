@@ -2,14 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.eutechpro.smshelp"
     >
-    v<uses-sdk android:minSdkVersion="11" android:targetSdkVersion="18" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <!--<uses-permission android:name="android.permission.WAKE_LOCK"/>-->
-    <!--<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>-->
     
-    <!--<uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>-->
-    <!--<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>-->
-    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <uses-permission android:name="android.permission.SEND_SMS"/>
     
     <application
         android:allowBackup="true"
@@ -19,21 +13,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        
+        <activity android:name=".BaseActivity"/>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main2"
+            android:name="home.HomeActivity"
+            android:label="@string/home_activity_title"
             android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleInstance"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-                
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <receiver
-            android:name=".scheduler.AlarmServiceReceiver"
+        <activity
+            android:name=".become_volunteer.BecomeVolunteerActivity"
+            android:label="@string/become_volunteer_activity_title"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar"
             />
+        <activity
+            android:name=".become_volunteer.BecomeDonatorActivity"
+            android:label="@string/become_donator_activity_title"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+    
+        <receiver android:name=".scheduler.AlarmServiceReceiver"/>
     </application>
-
 </manifest>

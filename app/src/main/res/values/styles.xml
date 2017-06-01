@@ -16,5 +16,29 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
-
+    
+    <style name="h">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="font">OpenSans-Light.ttf</item>
+    </style>
+    
+    <style name="h1" parent="h">
+        <item name="android:textSize">30sp</item>
+    </style>
+    
+    <style name="h2" parent="h">
+        <item name="android:textSize">24sp</item>
+    </style>
+    
+    <style name="h3" parent="h">
+        <item name="font">OpenSans-Bold.ttf</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    
+    <style name="text">
+        <item name="font">OpenSans-Regular.ttf</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 </resources>
