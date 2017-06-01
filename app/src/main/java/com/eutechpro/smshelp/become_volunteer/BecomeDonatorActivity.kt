@@ -10,15 +10,19 @@ import org.jetbrains.anko.find
 
 
 class BecomeDonatorActivity : BaseActivity() {
+    private val description: TextViewFont
+        get() = find(R.id.description)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.drawer_activity)
-        setSupportActionBar(find(R.id.toolbar))
-        initDrawer()
-        inflateContentLayout(R.layout.become_donator_incl_content)
+        initLayout(R.layout.become_donator_incl_content)
 
-        val description = find<TextViewFont>(R.id.description)
         description.fromHtml(R.string.become_donator_description)
         description.movementMethod = LinkMovementMethod.getInstance()
     }
+
+    override fun selectMenuItem() {
+        navigationView.menu.getItem(BaseActivity.MENU_BECOME_DONATOR_POSITION).isChecked = true
+    }
+
 }

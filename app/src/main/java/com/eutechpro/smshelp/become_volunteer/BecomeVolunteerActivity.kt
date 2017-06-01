@@ -9,17 +9,21 @@ import com.eutechpro.smshelp.extensions.fromHtml
 import org.jetbrains.anko.find
 
 class BecomeVolunteerActivity : BaseActivity() {
+    private val description: TextViewFont
+        get() = find(R.id.description)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.drawer_activity)
-        setSupportActionBar(find(R.id.toolbar))
-        initDrawer()
-        inflateContentLayout(R.layout.become_volunteer_incl_content)
+        initLayout(R.layout.become_volunteer_incl_content)
 
-        val description = find<TextViewFont>(R.id.description)
         description.fromHtml(R.string.become_volunteer_description)
         description.movementMethod = LinkMovementMethod.getInstance()
 
         find<TextViewFont>(R.id.moto).fromHtml(R.string.become_volunteer_moto)
     }
+
+    override fun selectMenuItem() {
+        navigationView.menu.getItem(BaseActivity.MENU_BECOME_VOLUNTEER_POSITION).isChecked = true
+    }
+
 }

@@ -10,15 +10,18 @@ import org.jetbrains.anko.find
 
 
 class NeedHelpActivity : BaseActivity() {
+    private val description: TextViewFont
+        get() = find(R.id.description)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.drawer_activity)
-        setSupportActionBar(find(R.id.toolbar))
-        initDrawer()
-        inflateContentLayout(R.layout.need_help_incl_content)
+        initLayout(R.layout.need_help_incl_content)
 
-        val description = find<TextViewFont>(R.id.description)
         description.fromHtml(R.string.need_help_description)
         description.movementMethod = LinkMovementMethod.getInstance()
+    }
+
+    override fun selectMenuItem() {
+        navigationView.menu.getItem(BaseActivity.MENU_NEED_HELP_POSITION).isChecked = true
     }
 }

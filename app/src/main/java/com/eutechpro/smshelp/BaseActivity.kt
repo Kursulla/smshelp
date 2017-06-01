@@ -6,7 +6,6 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
 import com.eutechpro.smshelp.become_volunteer.BecomeDonatorActivity
 import com.eutechpro.smshelp.become_volunteer.BecomeVolunteerActivity
 import com.eutechpro.smshelp.become_volunteer.NeedHelpActivity
@@ -14,14 +13,35 @@ import home.HomeActivity
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 
-open class BaseActivity : AppCompatActivity() {
-    protected fun initDrawer() {
+abstract class BaseActivity : AppCompatActivity() {
+    companion object {
+        val MENU_HOME_POSITION: Int = 0
+        val MENU_BECOME_VOLUNTEER_POSITION: Int = 1
+        val MENU_BECOME_DONATOR_POSITION: Int = 2
+        val MENU_NEED_HELP_POSITION: Int = 3
+    }
+
+    protected val navigationView: NavigationView
+        get() {
+            return find(R.id.nav_view)
+        }
+
+    protected fun initLayout(@IdRes contentLayoutId: Int) {
+        setContentView(R.layout.drawer_activity)
+        setSupportActionBar(find(R.id.toolbar))
+        initDrawer()
+        inflateContentLayout(contentLayoutId)
+        selectMenuItem()
+    }
+
+    protected abstract fun selectMenuItem()
+
+    private fun initDrawer() {
         val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
         val toggle = ActionBarDrawerToggle(this, drawer, find(R.id.toolbar), R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
-        val navigationView: NavigationView = find(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_donate_sms -> startActivity<HomeActivity>()
@@ -34,7 +54,7 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected fun inflateContentLayout(@IdRes contentId: Int) {
+    private fun inflateContentLayout(@IdRes contentId: Int) {
         layoutInflater.inflate(contentId, find(R.id.content_holder))
     }
 
@@ -44,18 +64,6 @@ open class BaseActivity : AppCompatActivity() {
             drawer.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_settings -> {
-
-                return true
-            }
-
-
-            else -> return super.onOptionsItemSelected(item)
         }
     }
 }

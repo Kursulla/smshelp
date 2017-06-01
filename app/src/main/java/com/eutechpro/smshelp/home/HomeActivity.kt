@@ -2,6 +2,7 @@ package home
 
 import android.support.annotation.StringRes
 import android.widget.Button
+import android.widget.TextView
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.R
 import com.eutechpro.smshelp.extensions.Formated
@@ -17,19 +18,13 @@ import org.jetbrains.anko.toast
 
 
 class HomeActivity : BaseActivity(), Mvp.View {
-    private var statusMessage: android.widget.TextView? = null
-    private var scheduleBtn: Button? = null
     private var presenter: Mvp.Presenter? = null
+    private val statusMessage: TextView get() = find(R.id.status_message)
+    private val scheduleBtn: Button get() = find(R.id.tmp_schedule_button)
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.drawer_activity)
-        setSupportActionBar(find(R.id.toolbar))
-        initDrawer()
-        inflateContentLayout(R.layout.home_incl_content)
-
-        statusMessage = find(R.id.status_message)
-        scheduleBtn = find(R.id.tmp_schedule_button)
+        initLayout(R.layout.home_incl_content)
 
         //todo inject
         presenter = Presenter(Model(PreferencesPersistence(SharedPreferencesForScheduler()), AlarmScheduler(applicationContext)))
@@ -42,10 +37,13 @@ class HomeActivity : BaseActivity(), Mvp.View {
         presenter?.unBindView()
     }
 
+    override fun selectMenuItem() {
+        navigationView.menu.getItem(BaseActivity.MENU_HOME_POSITION).isChecked = true
+    }
     override fun setStatusScheduled(date: java.util.Date) {
-        statusMessage?.text = getString(R.string.status_scheduled, date.Formated(date))
-        scheduleBtn?.text = "Un Schedule"
-        scheduleBtn?.setOnClickListener {
+        statusMessage.text = getString(R.string.status_scheduled, date.Formated(date))
+        scheduleBtn.text = "Un Schedule"
+        scheduleBtn.setOnClickListener {
             snackbar(R.string.snack_unscheduled, it, {
                 toast("Undoooo")
                 presenter?.schedule()
@@ -56,16 +54,15 @@ class HomeActivity : BaseActivity(), Mvp.View {
     }
 
     override fun setStatusNotScheduled() {
-        statusMessage?.setText(R.string.status_not_scheduled)
-        scheduleBtn?.text = "Schedule"
-        scheduleBtn?.setOnClickListener {
+        statusMessage.setText(R.string.status_not_scheduled)
+        scheduleBtn.text = "Schedule"
+        scheduleBtn.setOnClickListener {
             snackbar(R.string.snack_scheduled, it, {
                 toast("Undoooo")
                 presenter?.unSchedule()
             })
             presenter?.schedule()
         }
-
     }
 
     override fun showSnackBar(@StringRes messageId: Int, anchor: android.view.View) {
