@@ -6,10 +6,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import com.eutechpro.smshelp.become_volunteer.AboutUsActivity
-import com.eutechpro.smshelp.become_volunteer.BecomeDonatorActivity
-import com.eutechpro.smshelp.become_volunteer.BecomeVolunteerActivity
-import com.eutechpro.smshelp.become_volunteer.NeedHelpActivity
+import com.eutechpro.smshelp.become_volunteer.*
 import home.HomeActivity
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
@@ -21,6 +18,7 @@ abstract class BaseActivity : AppCompatActivity() {
         val MENU_BECOME_DONATOR_POSITION: Int = 2
         val MENU_NEED_HELP_POSITION: Int = 3
         val MENU_ABOUT_US_POSITION: Int = 4
+        val MENU_FRIENDS_POSITION: Int = 5
     }
 
     protected val navigationView: NavigationView
@@ -51,6 +49,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 R.id.nav_become_donator -> startActivity<BecomeDonatorActivity>()
                 R.id.nav_need_help -> startActivity<NeedHelpActivity>()
                 R.id.nav_about_us -> startActivity<AboutUsActivity>()
+                R.id.nav_friends -> startActivity<FoundationFriendsActivity>()
             }
             drawer.closeDrawer(GravityCompat.START)
             true

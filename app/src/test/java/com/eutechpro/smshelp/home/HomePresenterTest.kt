@@ -1,7 +1,5 @@
-package com.eutechpro.smshelp
+package com.eutechpro.smshelp.home
 
-import com.eutechpro.smshelp.home.Mvp
-import com.eutechpro.smshelp.home.Presenter
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.times
@@ -14,7 +12,7 @@ import rx.Observable
 import java.util.*
 
 
-class PresenterTest {
+class HomePresenterTest {
     private val modelMock = mock<Mvp.Model>()
     private val viewMock = mock<Mvp.View>()
     private var presenter: Presenter? = null

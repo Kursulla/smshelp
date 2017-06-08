@@ -41,4 +41,9 @@
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">15sp</item>
     </style>
+    <style name="text_italic">
+        <item name="font">OpenSans-Italic.ttf</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 </resources>

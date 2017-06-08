@@ -4,6 +4,7 @@
     >
     
     <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     
     <application
         android:allowBackup="true"
@@ -13,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".BaseActivity"/>
+        
         <activity
             android:name="home.HomeActivity"
             android:label="@string/home_activity_title"
@@ -46,6 +47,12 @@
         <activity
             android:name=".become_volunteer.AboutUsActivity"
             android:label="@string/about_us_activity_title"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+        <activity
+            android:name=".become_volunteer.FoundationFriendsActivity"
+            android:label="@string/foundation_freinds_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
             />

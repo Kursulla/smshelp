@@ -9,6 +9,10 @@
     <string name="nav_donate_sms">Doniraj SMS</string>
     <string name="nav_become_volunteer">Postani volonter</string>
     <string name="nav_become_donator">Postani donator</string>
+    <string name="nav_need_help">Treba ti pomoć?</string>
+    <string name="nav_about_us">O fondaciji</string>
+    <string name="nav_friends">Prijatelji fondacije</string>
+    <string name="nav_contacts">Kontakt</string>
     <string name="status_scheduled">Sledece slanje SMS poruke je zakazano za \n%1$s</string>
     <string name="status_not_scheduled">Jos uvek niste ukljucili mesecno slanje poruke</string>
     
@@ -119,5 +123,10 @@ Podrška oboleloj deci i njihovim porodicama u cilju lečenja, medicinskog zbrin
 Budućnost i životne mogućnosti dece u Srbiji, koja nisu odredjena siromaštvom, teškim bolestima, načinom na koji žive, lokacijom, nacionalnošću i veroispovesti, naš je siguran put u zdravo i uspešno društvo.
         <br/>
 Mi imamo cilj i na kraju prihvatamo samo jednu nagradu – osmeh i radost na licima onih kojima smo potrebni. Taj osmeh i ta radost nemaju cenu i njihovu vrednost znaju samo oni koji su pomažući drugima, postali ponosni vlasnici mnogo osmeha.]]></string>
-
+    
+    
+    <!-- Foundation friends-->
+    <string name="foundation_freinds_activity_title">Podrži život</string>
+    <string name="foundation_freinds_title">Prijatelji fondacije</string>
+    <string name="foundation_friends_error">Zao nam je, ne mozemo da prikazemo prijatelje. Pokusajte kasnije</string>
 </resources>
