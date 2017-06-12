@@ -5,21 +5,18 @@ import android.widget.Button
 import android.widget.TextView
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.R
+import com.eutechpro.smshelp.SmsHelpApplication
 import com.eutechpro.smshelp.extensions.Formated
-import com.eutechpro.smshelp.extensions.getSharedPreferences
 import com.eutechpro.smshelp.extensions.snackbar
-import com.eutechpro.smshelp.home.Model
 import com.eutechpro.smshelp.home.Mvp
-import com.eutechpro.smshelp.home.Presenter
-import com.eutechpro.smshelp.alarm.persistance.PrefsAlarmRepository
-
-import com.eutechpro.smshelp.alarm.AlarmScheduler
 import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
+import javax.inject.Inject
 
 
 class HomeActivity : BaseActivity(), Mvp.View {
-    private var presenter: Mvp.Presenter? = null
+    @Inject
+    lateinit var presenter: Mvp.Presenter
     private val statusMessage: TextView get() = find(R.id.status_message)
     private val scheduleBtn: Button get() = find(R.id.tmp_schedule_button)
 
@@ -27,15 +24,15 @@ class HomeActivity : BaseActivity(), Mvp.View {
         super.onCreate(savedInstanceState)
         initLayout(R.layout.home_incl_content)
 
-        //todo inject
-        presenter = Presenter(Model(PrefsAlarmRepository(getSharedPreferences("sms_help_persistance")), AlarmScheduler(applicationContext)))
-        presenter?.bindView(this)
-        presenter?.checkScheduleStatus()
+        SmsHelpApplication.homeActivityComponent.inject(this)
+
+        presenter.bindView(this)
+        presenter.checkScheduleStatus()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter?.unBindView()
+        presenter.unBindView()
     }
 
     override fun selectMenuItem() {
@@ -47,9 +44,9 @@ class HomeActivity : BaseActivity(), Mvp.View {
         scheduleBtn.setOnClickListener {
             snackbar(R.string.snack_unscheduled, it, {
                 toast("Undoooo")
-                presenter?.schedule()
+                presenter.schedule()
             })
-            presenter?.unSchedule()
+            presenter.unSchedule()
         }
 
     }
@@ -60,9 +57,9 @@ class HomeActivity : BaseActivity(), Mvp.View {
         scheduleBtn.setOnClickListener {
             snackbar(R.string.snack_scheduled, it, {
                 toast("Undoooo")
-                presenter?.unSchedule()
+                presenter.unSchedule()
             })
-            presenter?.schedule()
+            presenter.schedule()
         }
     }
 
@@ -73,6 +70,6 @@ class HomeActivity : BaseActivity(), Mvp.View {
     }
 
     override fun showError(errorString: Int) {
-        throw UnsupportedOperationException("This method is still not implemented")
+        throw UnsupportedOperationException("This method is still not implemented") as Throwable
     }
 }

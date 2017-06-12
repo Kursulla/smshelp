@@ -1,7 +1,7 @@
 package com.eutechpro.smshelp.sms
 
 import android.content.Context
-import com.eutechpro.smshelp.extensions.getSharedPreferences
+import com.eutechpro.smshelp.extensions.sharedPreferences
 import rx.Observable
 import java.util.*
 
@@ -14,7 +14,7 @@ class PrefsSmsRepository(val context: Context) : SmsRepository {
 
     override fun storeLastSms(sms: Sms): Observable<Boolean> {
         return Observable.create {
-            val prefs = context.getSharedPreferences(PREFS_NAME)
+            val prefs = context.sharedPreferences(PREFS_NAME)
             val editor = prefs.edit()
             editor.putString(SMS_NUMBER_KEY, sms.number)
             editor.putString(SMS_MESSAGE_KEY, sms.message)
@@ -28,7 +28,7 @@ class PrefsSmsRepository(val context: Context) : SmsRepository {
 
     override fun fetchLastSms(): Observable<Sms> {
         return Observable.create {
-            val prefs = context.getSharedPreferences(PREFS_NAME)
+            val prefs = context.sharedPreferences(PREFS_NAME)
             val num = prefs.getString(SMS_NUMBER_KEY, null)
             val message = prefs.getString(SMS_MESSAGE_KEY, null)
             val dateTimestamp = prefs.getLong(SMS_DATE_KEY, -1)
@@ -39,7 +39,7 @@ class PrefsSmsRepository(val context: Context) : SmsRepository {
 
     override fun getTotalDonatedMoney(): Observable<Int> {
         return Observable.create {
-            val prefs = context.getSharedPreferences(PREFS_NAME)
+            val prefs = context.sharedPreferences(PREFS_NAME)
             val donated = prefs.getInt(TOTAL_DONATED_MONEY_KEY, -1)
             it.onNext(donated)
             it.onCompleted()

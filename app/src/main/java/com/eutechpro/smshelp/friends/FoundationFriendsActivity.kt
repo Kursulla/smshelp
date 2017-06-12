@@ -3,21 +3,28 @@ package com.eutechpro.smshelp.volunteer
 import android.os.Bundle
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.R
-import com.eutechpro.smshelp.friends.*
+import com.eutechpro.smshelp.SmsHelpApplication
+import com.eutechpro.smshelp.friends.Friend
+import com.eutechpro.smshelp.friends.FriendView
+import com.eutechpro.smshelp.friends.Mvp
 import com.google.android.flexbox.FlexboxLayout
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 import java.util.*
+import javax.inject.Inject
 
 
 class FoundationFriendsActivity : BaseActivity(), AnkoLogger, Mvp.View {
     private val container: FlexboxLayout get() = find(R.id.container)
-    private val presenter: Mvp.Presenter get() = Presenter(Model(assets))//todo inject this
+    @Inject
+    lateinit var presenter: Mvp.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initLayout(R.layout.foundation_friends_incl_content)
+
+        SmsHelpApplication.friendsDaggerComponent.inject(this)
     }
 
     override fun onResume() {
