@@ -1,9 +1,9 @@
-package com.eutechpro.smshelp.become_volunteer
+package com.eutechpro.smshelp.volunteer
 
 import android.os.Bundle
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.R
-import com.eutechpro.smshelp.foundation_friends.*
+import com.eutechpro.smshelp.friends.*
 import com.google.android.flexbox.FlexboxLayout
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find

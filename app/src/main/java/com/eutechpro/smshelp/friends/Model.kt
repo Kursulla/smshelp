@@ -1,4 +1,4 @@
-package com.eutechpro.smshelp.foundation_friends
+package com.eutechpro.smshelp.friends
 
 import android.content.res.AssetManager
 import com.eutechpro.smshelp.extensions.loadJsonDataFromAssets
@@ -17,13 +17,10 @@ class Model(val assets: AssetManager) : Mvp.Model, AnkoLogger {
             subscriber ->
             val friendsJson = assets.loadJsonDataFromAssets("friends.json")
             val moshi = Moshi.Builder().build()
-            val type = Types.newParameterizedType(List::class.java, Friend::class.java!!)
+            val type = Types.newParameterizedType(List::class.java, Friend::class.java)
             val adapter: JsonAdapter<List<Friend>> = moshi.adapter(type)
             val friends: ArrayList<Friend> = adapter.fromJson(friendsJson) as ArrayList<Friend>
             subscriber?.onNext(friends)
         }).subscribeOn(Schedulers.io())
-
-
     }
-
 }

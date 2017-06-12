@@ -8,6 +8,7 @@
     
     <application
         android:allowBackup="true"
+        android:name=".SmsHelpApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -27,31 +28,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".become_volunteer.BecomeVolunteerActivity"
+            android:name=".volunteer.BecomeVolunteerActivity"
             android:label="@string/become_volunteer_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name=".become_volunteer.BecomeDonatorActivity"
+            android:name=".volunteer.BecomeDonatorActivity"
             android:label="@string/become_donator_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name=".become_volunteer.NeedHelpActivity"
+            android:name=".volunteer.NeedHelpActivity"
             android:label="@string/need_help_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name=".become_volunteer.AboutUsActivity"
+            android:name=".volunteer.AboutUsActivity"
             android:label="@string/about_us_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name=".become_volunteer.FoundationFriendsActivity"
+            android:name=".volunteer.FoundationFriendsActivity"
             android:label="@string/foundation_freinds_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"

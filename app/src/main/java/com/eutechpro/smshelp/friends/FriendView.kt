@@ -1,4 +1,4 @@
-package com.eutechpro.smshelp.foundation_friends
+package com.eutechpro.smshelp.friends
 
 import android.content.Context
 import android.util.AttributeSet

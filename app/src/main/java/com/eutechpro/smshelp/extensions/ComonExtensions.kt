@@ -11,6 +11,10 @@ import android.text.Html.FROM_HTML_MODE_COMPACT
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.ObjectInputStream
+import java.io.ObjectOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,8 +32,8 @@ fun TextView.fromHtml(@StringRes textResourceId: Int) {
     }
 }
 
-fun Context.SharedPreferencesForScheduler(): SharedPreferences {
-    return getSharedPreferences("sms_help_persistance", 0)
+fun Context.getSharedPreferences(prefsName: String): SharedPreferences {
+    return getSharedPreferences(prefsName, Context.MODE_PRIVATE)
 }
 
 fun Date.Formated(date:Date):String{

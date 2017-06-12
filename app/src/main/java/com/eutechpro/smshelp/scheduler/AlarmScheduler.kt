@@ -29,7 +29,6 @@ class AlarmScheduler(val context: Context):AnkoLogger {
         referenceToAlarmManager().cancel(pendingIntentToFireOnAlarmEvent(alarmId))
     }
 
-
     private fun referenceToAlarmManager() = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     private fun pendingIntentToFireOnAlarmEvent(alarmId: Int) = PendingIntent.getBroadcast(context, alarmId, Intent(context, AlarmServiceReceiver::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
 }

@@ -1,4 +1,4 @@
-package com.eutechpro.smshelp.become_volunteer
+package com.eutechpro.smshelp.volunteer
 
 import android.os.Bundle
 import android.text.method.LinkMovementMethod

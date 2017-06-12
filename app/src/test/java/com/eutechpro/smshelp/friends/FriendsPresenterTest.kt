@@ -1,4 +1,4 @@
-package com.eutechpro.smshelp.foundation_friends
+package com.eutechpro.smshelp.friends
 
 import com.eutechpro.smshelp.BaseRxTest
 import com.eutechpro.smshelp.R
