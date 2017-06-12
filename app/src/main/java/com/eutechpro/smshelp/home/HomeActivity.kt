@@ -1,7 +1,6 @@
 package home
 
 import android.support.annotation.StringRes
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.eutechpro.smshelp.BaseActivity
@@ -12,13 +11,11 @@ import com.eutechpro.smshelp.extensions.snackbar
 import com.eutechpro.smshelp.home.Model
 import com.eutechpro.smshelp.home.Mvp
 import com.eutechpro.smshelp.home.Presenter
-import com.eutechpro.smshelp.persistance.PreferencesPersistence
-import com.eutechpro.smshelp.scheduler.AlarmScheduler
-import com.eutechpro.smshelp.sms.PrefsSmsRepository
-import com.eutechpro.smshelp.sms.Sms
+import com.eutechpro.smshelp.alarm.persistance.PrefsAlarmRepository
+
+import com.eutechpro.smshelp.alarm.AlarmScheduler
 import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
-import java.util.*
 
 
 class HomeActivity : BaseActivity(), Mvp.View {
@@ -31,7 +28,7 @@ class HomeActivity : BaseActivity(), Mvp.View {
         initLayout(R.layout.home_incl_content)
 
         //todo inject
-        presenter = Presenter(Model(PreferencesPersistence(getSharedPreferences("sms_help_persistance")), AlarmScheduler(applicationContext)))
+        presenter = Presenter(Model(PrefsAlarmRepository(getSharedPreferences("sms_help_persistance")), AlarmScheduler(applicationContext)))
         presenter?.bindView(this)
         presenter?.checkScheduleStatus()
     }

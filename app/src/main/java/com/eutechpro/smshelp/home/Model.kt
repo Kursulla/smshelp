@@ -1,7 +1,7 @@
 package com.eutechpro.smshelp.home
 
-import com.eutechpro.smshelp.persistance.Persistence
-import com.eutechpro.smshelp.scheduler.AlarmScheduler
+import com.eutechpro.smshelp.alarm.persistance.AlarmRepository
+import com.eutechpro.smshelp.alarm.AlarmScheduler
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.debug
 import rx.Observable
@@ -9,13 +9,13 @@ import rx.subjects.PublishSubject
 import java.util.*
 
 
-internal open class Model(val persistence: Persistence, val smsScheduler: AlarmScheduler) : Mvp.Model, AnkoLogger {
+internal open class Model(val alarmRepository: AlarmRepository, val smsScheduler: AlarmScheduler) : Mvp.Model, AnkoLogger {
     private val SMS_NUMBER = "1234"
     private val isScheduledStream: PublishSubject<Boolean> = PublishSubject.create()
 
 
     override fun nextScheduledDateStream(): Observable<Date> {
-        return persistence.readDate(SMS_NUMBER)
+        return alarmRepository.fetchAlarmNextTriggeringDate(SMS_NUMBER)
     }
 
     override fun isScheduledStream(): Observable<Boolean> {
@@ -23,7 +23,7 @@ internal open class Model(val persistence: Persistence, val smsScheduler: AlarmS
     }
 
     override fun checkStatus(){
-        persistence.keyExists(SMS_NUMBER).subscribe {
+        alarmRepository.isAlarmScheduled(SMS_NUMBER).subscribe {
             isScheduledStream.onNext(it)
         }
     }
@@ -31,8 +31,8 @@ internal open class Model(val persistence: Persistence, val smsScheduler: AlarmS
     override fun schedule() {
         val date = Date()
         smsScheduler.scheduleNextAlarm(date, SMS_NUMBER.toInt())
-        persistence.storeDate(SMS_NUMBER, date).subscribe { debug("Schedule = $it") }
-        persistence.keyExists(SMS_NUMBER).subscribe {
+        alarmRepository.storeNextAlarmDate(SMS_NUMBER, date).subscribe { debug("Schedule = $it") }
+        alarmRepository.isAlarmScheduled(SMS_NUMBER).subscribe {
             isScheduledStream.onNext(it)
         }
 
@@ -40,8 +40,8 @@ internal open class Model(val persistence: Persistence, val smsScheduler: AlarmS
 
     override fun unSchedule() {
         smsScheduler.unScheduleNextAlarm(SMS_NUMBER.toInt())
-        persistence.removeDate(SMS_NUMBER).subscribe { debug("Unscheduled: $it") }
-        persistence.keyExists(SMS_NUMBER).subscribe {
+        alarmRepository.removeAlarmFromStorage(SMS_NUMBER).subscribe { debug("Unscheduled: $it") }
+        alarmRepository.isAlarmScheduled(SMS_NUMBER).subscribe {
             isScheduledStream.onNext(it)
         }
     }

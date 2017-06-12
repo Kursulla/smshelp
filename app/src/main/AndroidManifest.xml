@@ -57,6 +57,6 @@
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
             />
-        <receiver android:name=".scheduler.AlarmServiceReceiver"/>
+        <receiver android:name=".alarm.AlarmServiceReceiver"/>
     </application>
 </manifest>

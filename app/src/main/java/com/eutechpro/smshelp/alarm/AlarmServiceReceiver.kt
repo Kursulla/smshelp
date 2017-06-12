@@ -1,4 +1,4 @@
-package com.eutechpro.smshelp.scheduler
+package com.eutechpro.smshelp.alarm
 
 import android.content.BroadcastReceiver
 import android.content.Context
