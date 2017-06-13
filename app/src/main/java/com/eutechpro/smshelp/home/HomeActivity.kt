@@ -1,4 +1,4 @@
-package home
+package com.eutechpro.smshelp.home
 
 import android.support.annotation.StringRes
 import android.widget.Button
@@ -70,6 +70,6 @@ class HomeActivity : BaseActivity(), Mvp.View {
     }
 
     override fun showError(errorString: Int) {
-        throw UnsupportedOperationException("This method is still not implemented") as Throwable
+        throw UnsupportedOperationException("This method is still not implemented")
     }
 }

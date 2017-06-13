@@ -1,4 +1,4 @@
-package com.eutechpro.smshelp.volunteer
+package com.eutechpro.smshelp.friends
 
 import android.os.Bundle
 import com.eutechpro.smshelp.BaseActivity

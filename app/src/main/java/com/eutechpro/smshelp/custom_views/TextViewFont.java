@@ -49,6 +49,7 @@ public class TextViewFont extends android.support.v7.widget.AppCompatTextView {
         }
     }
 
+    @SuppressWarnings("unused")
     public void setText(String tekst) {
         super.setText(tekst);
         setBackgroundColor(Color.TRANSPARENT);
