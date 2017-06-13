@@ -8,7 +8,6 @@ import com.eutechpro.smshelp.R
 import com.eutechpro.smshelp.SmsHelpApplication
 import com.eutechpro.smshelp.extensions.Formated
 import com.eutechpro.smshelp.extensions.snackbar
-import com.eutechpro.smshelp.home.Mvp
 import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 import javax.inject.Inject
@@ -16,7 +15,7 @@ import javax.inject.Inject
 
 class HomeActivity : BaseActivity(), Mvp.View {
     @Inject
-    lateinit var presenter: Mvp.Presenter
+    internal lateinit var presenter: Mvp.Presenter
     private val statusMessage: TextView get() = find(R.id.status_message)
     private val scheduleBtn: Button get() = find(R.id.tmp_schedule_button)
 

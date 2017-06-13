@@ -8,7 +8,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class HomeDaggerModule {
+internal class HomeDaggerModule {
     @Provides
     fun providesPresenter(applicationContext: Context): Mvp.Presenter {
         val alarmScheduler = AlarmScheduler(applicationContext)

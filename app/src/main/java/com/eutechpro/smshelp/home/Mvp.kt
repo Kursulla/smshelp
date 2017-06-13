@@ -4,7 +4,7 @@ import android.support.annotation.StringRes
 import java.util.*
 
 
-interface Mvp {
+internal interface Mvp {
     interface Model{
         fun isScheduledStream(): rx.Observable<Boolean>
         fun nextScheduledDateStream(): rx.Observable<Date>

@@ -18,7 +18,7 @@ import javax.inject.Inject
 class FoundationFriendsActivity : BaseActivity(), AnkoLogger, Mvp.View {
     private val container: FlexboxLayout get() = find(R.id.container)
     @Inject
-    lateinit var presenter: Mvp.Presenter
+    internal lateinit var presenter: Mvp.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -17,7 +17,7 @@
         >
         
         <activity
-            android:name="home.HomeActivity"
+            android:name=".home.HomeActivity"
             android:label="@string/home_activity_title"
             android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleInstance"
@@ -40,19 +40,19 @@
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name=".volunteer.NeedHelpActivity"
+            android:name=".need_help.NeedHelpActivity"
             android:label="@string/need_help_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name=".volunteer.AboutUsActivity"
+            android:name=".about.AboutUsActivity"
             android:label="@string/about_us_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name=".volunteer.FoundationFriendsActivity"
+            android:name=".friends.FoundationFriendsActivity"
             android:label="@string/foundation_freinds_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
