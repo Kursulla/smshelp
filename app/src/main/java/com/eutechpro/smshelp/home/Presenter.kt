@@ -8,21 +8,22 @@ internal class Presenter(val model: Mvp.Model) : Mvp.Presenter, org.jetbrains.an
 
     override fun bindView(v: Mvp.View) {
         view = v
-        subscriptions.add(model.isScheduledStream()
-                .subscribe(
-                        { isScheduled ->
-                            if (isScheduled) {
-                                model.nextScheduledDateStream().subscribe {
-                                    view?.setStatusScheduled(it)
-                                }
-                            } else {
-                                view?.setStatusNotScheduled()
-                            }
-                        },
-                        { throwable ->
-                            view?.showError(R.string.error_cant_check_subscription)
-                            throwable.printStackTrace()
-                        }))
+
+        subscriptions.add(model.getNextScheduledSmsStream().subscribe(
+                { sms ->
+                    if (sms != null) {
+                        view?.setStatusScheduled(sms.date)
+                    } else {
+                        view?.setStatusNotScheduled()
+                    }
+                },
+                { throwable ->
+                    view?.showError(R.string.error_cant_check_subscription)
+                    view?.setStatusNotScheduled()
+                    throwable.printStackTrace()
+                })
+        )
+
     }
 
     override fun unBindView() {

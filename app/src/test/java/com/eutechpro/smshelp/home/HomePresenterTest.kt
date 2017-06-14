@@ -21,24 +21,24 @@ class HomePresenterTest {
     fun setUp() {
         MockitoAnnotations.initMocks(this)
 
-        whenever(modelMock.nextScheduledDateStream()).thenReturn(Observable.just(Date()))
+        whenever(modelMock.getNextScheduledDateStream()).thenReturn(Observable.just(Date()))
 
         presenter = Presenter(modelMock)
     }
 
     @Test
     fun testCheckingIsScheduled_OnBinding() {
-        whenever(modelMock.isScheduledStream()).thenReturn(Observable.just(true))
+        whenever(modelMock.getIsAlarmScheduledStream()).thenReturn(Observable.just(true))
 
         presenter?.bindView(viewMock)
 
-        verify(modelMock).isScheduledStream()
+        verify(modelMock).getIsAlarmScheduledStream()
         verify(viewMock, times(0)).showError(any())
     }
 
     @Test
     fun testDrawing_ScheduledStatus() {
-        whenever(modelMock.isScheduledStream()).thenReturn(Observable.just(true))
+        whenever(modelMock.getIsAlarmScheduledStream()).thenReturn(Observable.just(true))
 
         presenter?.bindView(viewMock)
 
@@ -49,7 +49,7 @@ class HomePresenterTest {
 
     @Test
     fun testDrawing_NotScheduledStatus() {
-        whenever(modelMock.isScheduledStream()).thenReturn(Observable.just(false))
+        whenever(modelMock.getIsAlarmScheduledStream()).thenReturn(Observable.just(false))
 
         presenter?.bindView(viewMock)
 

@@ -1,13 +1,14 @@
 package com.eutechpro.smshelp.home
 
 import android.support.annotation.StringRes
-import java.util.*
+import com.eutechpro.smshelp.sms.Sms
 
 
 internal interface Mvp {
     interface Model{
-        fun isScheduledStream(): rx.Observable<Boolean>
-        fun nextScheduledDateStream(): rx.Observable<Date>
+//        fun getIsAlarmScheduledStream(): rx.Observable<Boolean>
+//        fun getNextScheduledDateStream(): rx.Observable<Date>
+        fun getNextScheduledSmsStream(): rx.Observable<Sms>
         fun checkStatus()
         fun schedule()
         fun unSchedule()
