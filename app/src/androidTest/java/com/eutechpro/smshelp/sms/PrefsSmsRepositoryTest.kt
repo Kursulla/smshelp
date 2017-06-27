@@ -28,7 +28,7 @@ class PrefsSmsRepositoryTest {
     fun testStoringAndFetching() {
         //given
         val date = Date()
-        val sms = Sms("222", "test_message", date)
+        val sms = Sms(222, date, "test_message")
 
         //When
         smsRepository.storeLastSms(sms).subscribe(statusTestSubscriber)

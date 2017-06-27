@@ -10,11 +10,6 @@ interface AlarmRepository {
     fun storeNextAlarmSms(sms: Sms): Observable<Boolean>
 
     /**
-     * Check is there already alarm scheduled with the same alarmName.
-     */
-    fun isAlarmScheduled(alarmName: String): Observable<Boolean>
-
-    /**
      *  Read Sms of next scheduled alarm
      */
     fun fetchNextSms(smsNumber: Int): Observable<Sms>
@@ -22,5 +17,5 @@ interface AlarmRepository {
     /**
      * Remove Date of next alarm.
      */
-    fun removeAlarmFromStorage(alarmName: String): Observable<Boolean>
+    fun removeSmsAlarmFromStorage(smsNumber: Int): Observable<Boolean>
 }

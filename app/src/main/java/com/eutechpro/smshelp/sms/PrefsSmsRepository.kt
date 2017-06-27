@@ -16,7 +16,7 @@ class PrefsSmsRepository(val context: Context) : SmsRepository {
         return Observable.create {
             val prefs = context.sharedPreferences(PREFS_NAME)
             val editor = prefs.edit()
-            editor.putString(SMS_NUMBER_KEY, sms.number)
+            editor.putInt(SMS_NUMBER_KEY, sms.number)
             editor.putString(SMS_MESSAGE_KEY, sms.message)
             editor.putLong(SMS_DATE_KEY, sms.date.time)
             val status = editor.commit()
@@ -29,10 +29,10 @@ class PrefsSmsRepository(val context: Context) : SmsRepository {
     override fun fetchLastSms(): Observable<Sms> {
         return Observable.create {
             val prefs = context.sharedPreferences(PREFS_NAME)
-            val num = prefs.getString(SMS_NUMBER_KEY, null)
+            val num = prefs.getInt(SMS_NUMBER_KEY, 0)
             val message = prefs.getString(SMS_MESSAGE_KEY, null)
             val dateTimestamp = prefs.getLong(SMS_DATE_KEY, -1)
-            it.onNext(Sms(num, message, Date(dateTimestamp)))
+            it.onNext(Sms(num, Date(dateTimestamp), message))
             it.onCompleted()
         }
     }

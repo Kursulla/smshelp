@@ -13,14 +13,17 @@ import com.facebook.stetho.Stetho
 import dagger.Module
 import dagger.Provides
 
-class SmsHelpApplication : Application() {
+open class SmsHelpApplication : Application() {
     companion object {
         @JvmStatic lateinit var homeActivityComponent: HomeActivityComponent
         @JvmStatic lateinit var friendsDaggerComponent: FriendsDaggerComponent
     }
     override fun onCreate() {
         super.onCreate()
-        Stetho.initializeWithDefaults(this)
+        if (needStetho()) {
+            Stetho.initializeWithDefaults(this)
+        }
+
         val applicationModule = ApplicationDaggerModule(this)
 
         homeActivityComponent = DaggerHomeActivityComponent.builder()
@@ -33,6 +36,10 @@ class SmsHelpApplication : Application() {
                 .friendsDaggerModule(FriendsDaggerModule())
                 .build()
 
+    }
+
+    protected open fun needStetho(): Boolean {
+        return BuildConfig.DEBUG
     }
 
     @Module

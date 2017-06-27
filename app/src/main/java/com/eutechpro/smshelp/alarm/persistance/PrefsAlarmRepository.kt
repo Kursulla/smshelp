@@ -16,22 +16,12 @@ class PrefsAlarmRepository(private val preferences: SharedPreferences) : AlarmRe
     private val SMS_MESSAGE = "SMS_MESSAGE"
     private val SMS_DATE = "SMS_DATE"
 
-    override fun isAlarmScheduled(alarmName: String): Observable<Boolean> {
-        return Observable.create {
-            val exists = preferences.getLong(alarmName,0).compareTo(0) != 0
-            debug("isAlarmScheduled:$exists")
-            it.onNext(exists)
-            it.onCompleted()
-        }
-    }
-
-
     override fun storeNextAlarmSms(sms: Sms): Observable<Boolean> {
         return Observable.create<Boolean> {
             val stored = preferences.edit()
-                    .putString(SMS_NUMBER, sms.number)
-                    .putString(SMS_MESSAGE, sms.message)
-                    .putLong(SMS_DATE, sms.date.time)
+                    .putInt(SMS_NUMBER + sms.number, sms.number)
+                    .putString(SMS_MESSAGE + sms.number, sms.message)
+                    .putLong(SMS_DATE + sms.number, sms.date.time)
                     .commit()
 
             debug("stored:$stored")
@@ -42,22 +32,26 @@ class PrefsAlarmRepository(private val preferences: SharedPreferences) : AlarmRe
 
     override fun fetchNextSms(smsNumber: Int): Observable<Sms> {
         return Observable.create {
-            val number = preferences.getString(SMS_NUMBER, null)
-            val message = preferences.getString(SMS_MESSAGE, null)
-            val dateInMillis = preferences.getLong(SMS_DATE, 0)
-            if (number == null || message == null || dateInMillis < 0) {
+            val number = preferences.getInt(SMS_NUMBER + smsNumber, 0)
+            val message = preferences.getString(SMS_MESSAGE + smsNumber, null)
+            val dateInMillis = preferences.getLong(SMS_DATE + smsNumber, 0)
+            if (number == 0 || message == null || dateInMillis < 0) {
                 it.onNext(null)
             } else {
-                it.onNext(Sms(number, message, Date(dateInMillis)))
+                it.onNext(Sms(number, Date(dateInMillis), message))
             }
             it.onCompleted()
         }
     }
 
-    override fun removeAlarmFromStorage(alarmName: String): Observable<Boolean> {
+    override fun removeSmsAlarmFromStorage(smsNumber: Int): Observable<Boolean> {
         return Observable.create<Boolean> {
-            val removed = preferences.edit().remove(alarmName).commit()
-            debug("removeAlarmFromStorage:$removed")
+            val removed = preferences.edit()
+                    .remove(SMS_NUMBER + smsNumber)
+                    .remove(SMS_MESSAGE + smsNumber)
+                    .remove(SMS_DATE + smsNumber)
+                    .commit()
+            debug("removeSmsAlarmFromStorage:$removed")
             it.onNext(removed)
             it.onCompleted()
         }
