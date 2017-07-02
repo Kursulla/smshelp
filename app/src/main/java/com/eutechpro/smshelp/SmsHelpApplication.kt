@@ -12,6 +12,7 @@ import com.eutechpro.smshelp.home.HomeDaggerModule
 import com.facebook.stetho.Stetho
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 open class SmsHelpApplication : Application() {
     companion object {
@@ -45,11 +46,13 @@ open class SmsHelpApplication : Application() {
     @Module
     class ApplicationDaggerModule(private var application: Application) {
         @Provides
+        @Singleton
         fun providesApplicationContext(): Context {
             return application.applicationContext
         }
 
         @Provides
+        @Singleton
         fun providesAssetManager(): AssetManager {
             return application.assets
         }
