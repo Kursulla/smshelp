@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
         constants = BuildConfig::class,
         application = TestingApplication::class
 )
-class PrefsAlarmRepositoryTest {
+class AlarmPrefsRepositoryTest {
     private val SMS_NUMBER = 111
     private val SMS_DATE = Date()
     private val SMS_MESSAGE = "SMS_MESSAGE_TEST"
@@ -36,7 +36,7 @@ class PrefsAlarmRepositoryTest {
     @Before
     fun setUp() {
         sharedPreferences = RuntimeEnvironment.application.getSharedPreferences("test", Context.MODE_PRIVATE)
-        alarmRepository = PrefsAlarmRepository(sharedPreferences)
+        alarmRepository = AlarmPrefsRepository(sharedPreferences)
     }
 
 

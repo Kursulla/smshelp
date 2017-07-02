@@ -23,7 +23,7 @@ class HomeActivity : BaseActivity(), Mvp.View {
         super.onCreate(savedInstanceState)
         initLayout(R.layout.home_incl_content)
 
-        SmsHelpApplication.homeActivityComponent.inject(this)
+        SmsHelpApplication.homeDaggerComponent.inject(this)
 
         presenter.bindView(this)
         presenter.checkScheduleStatus()

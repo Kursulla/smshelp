@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         >
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/title"
             style="@style/h1"
             android:layout_width="wrap_content"

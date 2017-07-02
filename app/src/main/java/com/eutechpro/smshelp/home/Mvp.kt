@@ -4,7 +4,7 @@ import android.support.annotation.StringRes
 import com.eutechpro.smshelp.sms.Sms
 
 
-internal interface Mvp {
+interface Mvp {
     interface Model{
 //        fun getIsAlarmScheduledStream(): rx.Observable<Boolean>
 //        fun getNextScheduledDateStream(): rx.Observable<Date>

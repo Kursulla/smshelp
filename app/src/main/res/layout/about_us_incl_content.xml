@@ -15,7 +15,7 @@
         android:padding="10dp"
         >
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/founders_title"
             style="@style/h1"
             android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
             tools:text="@string/about_us_founders_title"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/founders_sergej"
             style="@style/text"
             android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@+id/founders_title"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/founders_verica"
             style="@style/text"
             android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
             app:layout_constraintTop_toBottomOf="@+id/founders_sergej"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/board_title"
             style="@style/h1"
             android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/founders_verica"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/board_sergej"
             style="@style/text"
             android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@+id/board_title"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/board_basara"
             style="@style/text"
             android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
             app:layout_constraintTop_toBottomOf="@+id/board_sergej"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/board_about_us_board_paspalj"
             style="@style/text"
             android:layout_width="wrap_content"
@@ -114,7 +114,7 @@
             app:layout_constraintTop_toBottomOf="@+id/board_about_us_board_dragan"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/board_about_us_board_dragan"
             style="@style/text"
             android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
             app:layout_constraintTop_toBottomOf="@+id/board_basara"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/board_about_us_board_bozovic"
             style="@style/text"
             android:layout_width="wrap_content"
@@ -142,7 +142,7 @@
             app:layout_constraintTop_toBottomOf="@+id/board_about_us_board_paspalj"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/mission_title"
             style="@style/h1"
             android:layout_width="wrap_content"
@@ -158,7 +158,7 @@
             tools:text="@string/about_us_mission_title"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/mission_text"
             style="@style/text"
             android:layout_width="wrap_content"
@@ -173,7 +173,7 @@
             tools:text="Mission text"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/textViewFont2"
             style="@style/h1"
             android:layout_width="wrap_content"
@@ -188,7 +188,7 @@
             tools:text="@string/about_us_vission_title"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/vission_text"
             style="@style/text"
             android:layout_width="wrap_content"
@@ -203,7 +203,7 @@
             tools:text="Vission text"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/textViewFont3"
             style="@style/h1"
             android:layout_width="wrap_content"
@@ -219,7 +219,7 @@
             tools:text="@string/about_us_goals_title"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/goals_text"
             style="@style/text"
             android:layout_width="wrap_content"

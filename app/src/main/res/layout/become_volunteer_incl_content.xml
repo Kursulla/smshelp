@@ -15,7 +15,7 @@
         android:padding="10dp"
         >
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/title"
             style="@style/h1"
             android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent"
         />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/description"
             style="@style/text"
             android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
             tools:text="@string/become_volunteer_description"
             />
         
-        <com.eutechpro.smshelp.custom_views.TextViewFont
+        <com.eutechpro.smshelp.customviews.TextViewFont
             android:id="@+id/moto"
             style="@style/h3"
             android:layout_width="wrap_content"

@@ -3,20 +3,19 @@ package com.eutechpro.smshelp
 import android.app.Application
 import android.content.Context
 import android.content.res.AssetManager
-import com.eutechpro.smshelp.friends.DaggerFriendsDaggerComponent
-import com.eutechpro.smshelp.friends.FriendsDaggerComponent
-import com.eutechpro.smshelp.friends.FriendsDaggerModule
-import com.eutechpro.smshelp.home.DaggerHomeActivityComponent
-import com.eutechpro.smshelp.home.HomeActivityComponent
-import com.eutechpro.smshelp.home.HomeDaggerModule
+import com.eutechpro.smshelp.friends.di.DaggerFriendsDaggerComponent
+import com.eutechpro.smshelp.friends.di.FriendsDaggerComponent
+import com.eutechpro.smshelp.friends.di.FriendsDaggerModule
+import com.eutechpro.smshelp.home.di.DaggerHomeDaggerComponent
+import com.eutechpro.smshelp.home.di.HomeDaggerComponent
+import com.eutechpro.smshelp.home.di.HomeDaggerModule
 import com.facebook.stetho.Stetho
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 open class SmsHelpApplication : Application() {
     companion object {
-        @JvmStatic lateinit var homeActivityComponent: HomeActivityComponent
+        @JvmStatic lateinit var homeDaggerComponent: HomeDaggerComponent
         @JvmStatic lateinit var friendsDaggerComponent: FriendsDaggerComponent
     }
     override fun onCreate() {
@@ -27,7 +26,7 @@ open class SmsHelpApplication : Application() {
 
         val applicationModule = ApplicationDaggerModule(this)
 
-        homeActivityComponent = DaggerHomeActivityComponent.builder()
+        homeDaggerComponent = DaggerHomeDaggerComponent.builder()
                 .applicationDaggerModule(applicationModule)
                 .homeDaggerModule(HomeDaggerModule())
                 .build()
@@ -36,7 +35,6 @@ open class SmsHelpApplication : Application() {
                 .applicationDaggerModule(applicationModule)
                 .friendsDaggerModule(FriendsDaggerModule())
                 .build()
-
     }
 
     protected open fun needStetho(): Boolean {
@@ -46,13 +44,11 @@ open class SmsHelpApplication : Application() {
     @Module
     class ApplicationDaggerModule(private var application: Application) {
         @Provides
-        @Singleton
         fun providesApplicationContext(): Context {
             return application.applicationContext
         }
 
         @Provides
-        @Singleton
         fun providesAssetManager(): AssetManager {
             return application.assets
         }

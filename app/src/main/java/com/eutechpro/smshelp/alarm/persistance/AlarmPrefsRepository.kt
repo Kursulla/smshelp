@@ -11,7 +11,7 @@ import java.util.*
 /**
  * Persist data in SharedPreferences
  */
-class PrefsAlarmRepository(private val preferences: SharedPreferences) : AlarmRepository, AnkoLogger {
+class AlarmPrefsRepository(private val preferences: SharedPreferences) : AlarmRepository, AnkoLogger {
     private val SMS_NUMBER = "SMS_NUMBER"
     private val SMS_MESSAGE = "SMS_MESSAGE"
     private val SMS_DATE = "SMS_DATE"

@@ -5,7 +5,7 @@ import com.eutechpro.smshelp.extensions.sharedPreferences
 import rx.Observable
 import java.util.*
 
-class PrefsSmsRepository(val context: Context) : SmsRepository {
+class SmsPrefsRepository(val context: Context) : SmsRepository {
     private val PREFS_NAME = "sms_repository"
     private val SMS_NUMBER_KEY = "sms_number"
     private val SMS_MESSAGE_KEY = "sms_message"

@@ -1,8 +1,11 @@
-package com.eutechpro.smshelp.home
+package com.eutechpro.smshelp.home.di
 
 import android.content.Context
-import com.eutechpro.smshelp.alarm.PersistableSmsScheduler
+import com.eutechpro.smshelp.alarm.SmsPersistableScheduler
 import com.eutechpro.smshelp.di.ActivityScope
+import com.eutechpro.smshelp.home.Model
+import com.eutechpro.smshelp.home.Mvp
+import com.eutechpro.smshelp.home.Presenter
 import dagger.Module
 import dagger.Provides
 
@@ -11,7 +14,7 @@ internal class HomeDaggerModule {
     @ActivityScope
     @Provides
     fun providesPresenter(applicationContext: Context): Mvp.Presenter {
-        val alarmScheduler = PersistableSmsScheduler(applicationContext)
+        val alarmScheduler = SmsPersistableScheduler(applicationContext)
         val model = Model(alarmScheduler)
         return Presenter(model)
     }

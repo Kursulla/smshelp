@@ -4,7 +4,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import com.eutechpro.smshelp.alarm.persistance.PrefsAlarmRepository
+import com.eutechpro.smshelp.alarm.persistance.AlarmPrefsRepository
 import com.eutechpro.smshelp.extensions.sharedPreferences
 import com.eutechpro.smshelp.sms.Sms
 import org.jetbrains.anko.AnkoLogger
@@ -14,9 +14,9 @@ import rx.Observable
 /**
  * Used to schedule and un schedule sending of SMS at certain date.
  */
-class PersistableSmsScheduler(val context: Context) : SmsScheduler, AnkoLogger {
+class SmsPersistableScheduler(val context: Context) : SmsScheduler, AnkoLogger {
     private val FREQUENCY_INTERVAL = 1000 * 10L
-    private val repository = PrefsAlarmRepository(context.sharedPreferences("alarms"))
+    private val repository = AlarmPrefsRepository(context.sharedPreferences("alarms"))
 
     override fun scheduleNextSms(sms: Sms): Observable<Boolean> {
         debug("Schedule Next sms")

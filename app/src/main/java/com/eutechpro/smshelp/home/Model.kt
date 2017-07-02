@@ -8,7 +8,7 @@ import rx.subjects.PublishSubject
 import java.util.*
 
 
-internal open class Model(val smsScheduler: SmsScheduler) : Mvp.Model, AnkoLogger {
+open class Model(val smsScheduler: SmsScheduler) : Mvp.Model, AnkoLogger {
     private val SMS_NUMBER = 1234
     private val smsStream: PublishSubject<Sms> = PublishSubject.create()
 

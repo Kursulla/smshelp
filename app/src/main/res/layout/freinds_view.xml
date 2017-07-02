@@ -17,7 +17,7 @@
         tools:src="@drawable/ic_menu_camera"
         />
     
-    <com.eutechpro.smshelp.custom_views.TextViewFont
+    <com.eutechpro.smshelp.customviews.TextViewFont
         android:id="@+id/friend_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,15 +1,15 @@
-package com.eutechpro.smshelp.friends
+package com.eutechpro.smshelp.home.di
 
 import com.eutechpro.smshelp.SmsHelpApplication
 import com.eutechpro.smshelp.di.ActivityScope
+import com.eutechpro.smshelp.home.HomeActivity
 import dagger.Component
-
 
 @ActivityScope
 @Component(modules = arrayOf(
         SmsHelpApplication.ApplicationDaggerModule::class,
-        FriendsDaggerModule::class
+        HomeDaggerModule::class
 ))
-interface FriendsDaggerComponent {
-    fun inject(activity: FoundationFriendsActivity)
+interface HomeDaggerComponent {
+    fun inject(homeActivity: HomeActivity)
 }

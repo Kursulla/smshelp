@@ -15,7 +15,7 @@ import java.util.*
 import javax.inject.Inject
 
 
-class FoundationFriendsActivity : BaseActivity(), AnkoLogger, Mvp.View {
+class FriendsActivity : BaseActivity(), AnkoLogger, Mvp.View {
     private val container: FlexboxLayout get() = find(R.id.container)
     @Inject
     internal lateinit var presenter: Mvp.Presenter

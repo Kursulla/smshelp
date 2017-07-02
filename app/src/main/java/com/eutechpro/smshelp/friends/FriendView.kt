@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import com.eutechpro.smshelp.R
-import com.eutechpro.smshelp.custom_views.TextViewFont
+import com.eutechpro.smshelp.customviews.TextViewFont
 import com.eutechpro.smshelp.extensions.load
 import org.jetbrains.anko.find
 

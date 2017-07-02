@@ -34,13 +34,13 @@
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name=".volunteer.BecomeDonatorActivity"
+            android:name=".donator.BecomeDonatorActivity"
             android:label="@string/become_donator_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name=".need_help.NeedHelpActivity"
+            android:name=".help.NeedHelpActivity"
             android:label="@string/need_help_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"
@@ -52,7 +52,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             />
         <activity
-            android:name=".friends.FoundationFriendsActivity"
+            android:name=".friends.FriendsActivity"
             android:label="@string/foundation_freinds_activity_title"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar"

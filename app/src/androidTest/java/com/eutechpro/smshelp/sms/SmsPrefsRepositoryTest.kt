@@ -10,7 +10,7 @@ import rx.observers.TestSubscriber
 import java.util.*
 
 @RunWith(AndroidJUnit4::class)
-class PrefsSmsRepositoryTest {
+class SmsPrefsRepositoryTest {
     private lateinit var smsRepository: SmsRepository
 
     private lateinit var statusTestSubscriber: TestSubscriber<Boolean>
@@ -18,7 +18,7 @@ class PrefsSmsRepositoryTest {
 
     @Before
     fun setUp() {
-        smsRepository = PrefsSmsRepository(InstrumentationRegistry.getTargetContext())
+        smsRepository = SmsPrefsRepository(InstrumentationRegistry.getTargetContext())
         statusTestSubscriber = TestSubscriber<Boolean>()
         smsTestSubscriber = TestSubscriber<Sms>()
 

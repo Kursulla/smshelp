@@ -1,4 +1,4 @@
-package com.eutechpro.smshelp.custom_views;
+package com.eutechpro.smshelp.customviews;
 
 import android.content.Context;
 import android.content.res.TypedArray;

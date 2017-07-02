@@ -1,10 +1,10 @@
-package com.eutechpro.smshelp.need_help
+package com.eutechpro.smshelp.help
 
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.R
-import com.eutechpro.smshelp.custom_views.TextViewFont
+import com.eutechpro.smshelp.customviews.TextViewFont
 import com.eutechpro.smshelp.extensions.fromHtml
 import org.jetbrains.anko.find
 

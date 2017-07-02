@@ -14,7 +14,7 @@
     android:padding="10dp"
     >
     
-    <com.eutechpro.smshelp.custom_views.TextViewFont
+    <com.eutechpro.smshelp.customviews.TextViewFont
         android:id="@+id/title"
         android:layout_width="wrap_content"
         style="@style/h1"
@@ -30,7 +30,7 @@
         app:layout_constraintRight_toRightOf="parent"
         />
     
-    <com.eutechpro.smshelp.custom_views.TextViewFont
+    <com.eutechpro.smshelp.customviews.TextViewFont
         android:id="@+id/description"
         style="@style/text"
         android:layout_width="wrap_content"

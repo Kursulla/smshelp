@@ -2,7 +2,7 @@ package com.eutechpro.smshelp.home
 
 import com.eutechpro.smshelp.R
 
-internal class Presenter(val model: Mvp.Model) : Mvp.Presenter, org.jetbrains.anko.AnkoLogger {
+class Presenter(val model: Mvp.Model) : Mvp.Presenter, org.jetbrains.anko.AnkoLogger {
     var view: Mvp.View? = null
     val subscriptions = rx.subscriptions.CompositeSubscription()
 
