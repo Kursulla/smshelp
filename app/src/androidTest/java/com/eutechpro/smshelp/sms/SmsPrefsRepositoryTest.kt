@@ -49,7 +49,7 @@ class SmsPrefsRepositoryTest {
 
         val storedSms: Sms = smsTestSubscriber.onNextEvents[0]
         assertNotNull(storedSms)
-        assertEquals("222", storedSms.number)
+        assertEquals(222, storedSms.number)
         assertEquals("test_message", storedSms.message)
         assertEquals(date, storedSms.date)
 
