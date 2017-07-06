@@ -4,9 +4,6 @@ import android.os.Bundle
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.R
 import com.eutechpro.smshelp.SmsHelpApplication
-import com.eutechpro.smshelp.friends.Friend
-import com.eutechpro.smshelp.friends.FriendView
-import com.eutechpro.smshelp.friends.Mvp
 import com.google.android.flexbox.FlexboxLayout
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
@@ -17,6 +14,7 @@ import javax.inject.Inject
 
 class FriendsActivity : BaseActivity(), AnkoLogger, Mvp.View {
     private val container: FlexboxLayout get() = find(R.id.container)
+
     @Inject
     internal lateinit var presenter: Mvp.Presenter
 

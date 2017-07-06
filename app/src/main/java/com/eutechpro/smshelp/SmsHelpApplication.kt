@@ -1,8 +1,6 @@
 package com.eutechpro.smshelp
 
 import android.app.Application
-import android.content.Context
-import android.content.res.AssetManager
 import com.eutechpro.smshelp.friends.di.DaggerFriendsDaggerComponent
 import com.eutechpro.smshelp.friends.di.FriendsDaggerComponent
 import com.eutechpro.smshelp.friends.di.FriendsDaggerModule
@@ -15,14 +13,16 @@ import dagger.Provides
 
 open class SmsHelpApplication : Application() {
     companion object {
-        @JvmStatic lateinit var homeDaggerComponent: HomeDaggerComponent
-        @JvmStatic lateinit var friendsDaggerComponent: FriendsDaggerComponent
+        lateinit var homeDaggerComponent: HomeDaggerComponent
+        lateinit var friendsDaggerComponent: FriendsDaggerComponent
     }
     override fun onCreate() {
         super.onCreate()
         if (needStetho()) {
             Stetho.initializeWithDefaults(this)
         }
+
+
 
         val applicationModule = ApplicationDaggerModule(this)
 
@@ -44,13 +44,9 @@ open class SmsHelpApplication : Application() {
     @Module
     class ApplicationDaggerModule(private var application: Application) {
         @Provides
-        fun providesApplicationContext(): Context {
-            return application.applicationContext
-        }
+        fun providesApplicationContext() = application.applicationContext
 
         @Provides
-        fun providesAssetManager(): AssetManager {
-            return application.assets
-        }
+        fun providesAssetManager() = application.assets
     }
 }

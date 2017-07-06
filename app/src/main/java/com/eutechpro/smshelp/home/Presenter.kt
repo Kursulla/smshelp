@@ -23,7 +23,6 @@ class Presenter(val model: Mvp.Model) : Mvp.Presenter, org.jetbrains.anko.AnkoLo
                     throwable.printStackTrace()
                 })
         )
-
     }
 
     override fun unBindView() {

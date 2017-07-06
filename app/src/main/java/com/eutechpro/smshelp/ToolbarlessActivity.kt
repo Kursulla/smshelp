@@ -17,16 +17,7 @@ import com.eutechpro.smshelp.volunteer.BecomeVolunteerActivity
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 
-abstract class BaseActivity : AppCompatActivity() {
-    companion object {
-        val MENU_HOME_POSITION: Int = 0
-        val MENU_BECOME_VOLUNTEER_POSITION: Int = 1
-        val MENU_BECOME_DONATOR_POSITION: Int = 2
-        val MENU_NEED_HELP_POSITION: Int = 3
-        val MENU_ABOUT_US_POSITION: Int = 4
-        val MENU_FRIENDS_POSITION: Int = 5
-    }
-
+abstract class ToolbarlessActivity : AppCompatActivity() {
     protected val navigationView: NavigationView get() {
         return find(R.id.nav_view)
     }
@@ -36,7 +27,8 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected fun initLayout(@IdRes contentLayoutId: Int) {
-        setContentView(R.layout.base_activity)
+        setContentView(R.layout.base_trasparent_toolbar_activity)
+        toolbar.title = ""
         setSupportActionBar(toolbar)
         initDrawer()
         inflateContentLayout(contentLayoutId)

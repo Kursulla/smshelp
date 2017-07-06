@@ -6,6 +6,7 @@ import android.widget.TextView
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.R
 import com.eutechpro.smshelp.SmsHelpApplication
+import com.eutechpro.smshelp.ToolbarlessActivity
 import com.eutechpro.smshelp.extensions.Formated
 import com.eutechpro.smshelp.extensions.snackbar
 import org.jetbrains.anko.find
@@ -13,7 +14,7 @@ import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 
-class HomeActivity : BaseActivity(), Mvp.View {
+class HomeActivity : ToolbarlessActivity(), Mvp.View {
     @Inject
     internal lateinit var presenter: Mvp.Presenter
     private val statusMessage: TextView get() = find(R.id.status_message)
@@ -24,7 +25,6 @@ class HomeActivity : BaseActivity(), Mvp.View {
         initLayout(R.layout.home_incl_content)
 
         SmsHelpApplication.homeDaggerComponent.inject(this)
-
         presenter.bindView(this)
         presenter.checkScheduleStatus()
     }
