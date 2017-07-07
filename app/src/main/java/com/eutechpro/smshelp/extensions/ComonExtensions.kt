@@ -32,9 +32,9 @@ fun Context.sharedPreferences(prefsName: String): SharedPreferences {
     return getSharedPreferences(prefsName, Context.MODE_PRIVATE)
 }
 
-fun Date.Formated(date:Date):String{
+fun Date.format():String{
     val dateFormat = SimpleDateFormat("dd/MMMM/yyyy", Locale("sr","SR"))
-    return dateFormat.format(date)
+    return dateFormat.format(this)
 }
 
 fun ImageView.load(url: String) {

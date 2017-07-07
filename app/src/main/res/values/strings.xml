@@ -13,8 +13,12 @@
     <string name="nav_about_us">O fondaciji</string>
     <string name="nav_friends">Prijatelji fondacije</string>
     <string name="nav_contacts">Kontakt</string>
-    <string name="status_scheduled">Sledece slanje SMS poruke je zakazano za \n%1$s</string>
-    <string name="status_not_scheduled">Jos uvek niste ukljucili mesecno slanje poruke</string>
+    <string name="scheduled_status_title">Sledece slanje je \n%1$s</string>
+    <string name="scheduled_status_description">Svakim vašim SMS-om pomažete jednoj bolesnoj osobi da bude korak bliže izlečenju.</string>
+    <string name="scheduled_btn">Ugasi mesečno slanje</string>
+    <string name="not_scheduled_status_title">Još uvek niste uključili mesečno slanje?</string>
+    <string name="not_scheduled_status_description">Zakažite slanje SMS-a i svakog meseca aplikacija ce poslati JEDAN sms za vas. 100 dinara mesečno Vama ne znači mnogo, ali nekome možda znači ceo život!!!</string>
+    <string name="not_scheduled_btn">Da, želim da pomognem</string>
     
     <!--Snacks/Toasts-->
     <string name="snack_unscheduled">Uklonili ste zakazano slanje poruke!</string>
