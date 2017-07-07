@@ -7,16 +7,14 @@ import android.widget.TextView
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.R
 import com.eutechpro.smshelp.SmsHelpApplication
-import com.eutechpro.smshelp.ToolbarlessActivity
+import com.eutechpro.smshelp.BaseActivityTransparentToolbar
 import com.eutechpro.smshelp.extensions.format
 import com.eutechpro.smshelp.extensions.snackbar
 import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
-import javax.inject.Inject
 
 
-class HomeActivity : ToolbarlessActivity(), Mvp.View {
-    @Inject
+open class HomeActivity : BaseActivityTransparentToolbar(), Mvp.View {
     internal lateinit var presenter: Mvp.Presenter
     private val statusMessage: TextView get() = find(R.id.status_message)
     private val statusDescription: TextView get() = find(R.id.status_description)

@@ -17,7 +17,7 @@ import com.eutechpro.smshelp.volunteer.BecomeVolunteerActivity
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 
-abstract class ToolbarlessActivity : AppCompatActivity() {
+abstract class BaseActivityTransparentToolbar : AppCompatActivity() {
     protected val navigationView: NavigationView get() {
         return find(R.id.nav_view)
     }
