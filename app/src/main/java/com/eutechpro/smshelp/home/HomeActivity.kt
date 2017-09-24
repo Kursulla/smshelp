@@ -5,9 +5,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.eutechpro.smshelp.BaseActivity
+import com.eutechpro.smshelp.BaseActivityTransparentToolbar
 import com.eutechpro.smshelp.R
 import com.eutechpro.smshelp.SmsHelpApplication
-import com.eutechpro.smshelp.BaseActivityTransparentToolbar
 import com.eutechpro.smshelp.extensions.format
 import com.eutechpro.smshelp.extensions.snackbar
 import org.jetbrains.anko.find
@@ -19,12 +19,13 @@ open class HomeActivity : BaseActivityTransparentToolbar(), Mvp.View {
     private val statusMessage: TextView get() = find(R.id.status_message)
     private val statusDescription: TextView get() = find(R.id.status_description)
     private val scheduleBtn: Button get() = find(R.id.tmp_schedule_button)
-    private val heart: ImageView get() = find(R.id.hearth)
+    private val heart: ImageView get() = find(R.id.heart)
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         initLayout(R.layout.home_incl_content)
         SmsHelpApplication.homeDaggerComponent.inject(this)
+        presenter = SmsHelpApplication.homeDaggerComponent.getPresenter()
         presenter.bindView(this)
         presenter.checkScheduleStatus()
     }
@@ -39,6 +40,7 @@ open class HomeActivity : BaseActivityTransparentToolbar(), Mvp.View {
     }
     override fun setStatusScheduled(date: java.util.Date) {
         heart.setImageResource(R.drawable.heart_full)
+
         statusMessage.text = getString(R.string.scheduled_status_title, date.format())
         statusDescription.text = getString(R.string.scheduled_status_description)
         scheduleBtn.text = getString(R.string.scheduled_btn)
@@ -67,4 +69,10 @@ open class HomeActivity : BaseActivityTransparentToolbar(), Mvp.View {
     override fun showError(errorString: Int) {
         throw UnsupportedOperationException("This method is still not implemented")
     }
+
+    protected open fun injectPresenter(): Mvp.Presenter {
+        return SmsHelpApplication.homeDaggerComponent.getPresenter()
+    }
+
+
 }

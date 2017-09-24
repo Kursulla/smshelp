@@ -18,6 +18,7 @@ interface Mvp {
         fun setStatusScheduled(date: java.util.Date)
         fun setStatusNotScheduled()
         fun showError(@StringRes errorString: Int)
+
     }
     interface Presenter{
         fun bindView(v: Mvp.View)

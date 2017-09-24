@@ -22,8 +22,6 @@ open class SmsHelpApplication : Application() {
             Stetho.initializeWithDefaults(this)
         }
 
-
-
         val applicationModule = ApplicationDaggerModule(this)
 
         homeDaggerComponent = DaggerHomeDaggerComponent.builder()

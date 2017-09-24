@@ -33,7 +33,7 @@ fun Context.sharedPreferences(prefsName: String): SharedPreferences {
 }
 
 fun Date.format():String{
-    val dateFormat = SimpleDateFormat("dd/MMMM/yyyy", Locale("sr","SR"))
+    val dateFormat = SimpleDateFormat("dd/MMMM/yyyy", Locale("sr_Latn_RS","sr_Latn_RS"))
     return dateFormat.format(this)
 }
 
