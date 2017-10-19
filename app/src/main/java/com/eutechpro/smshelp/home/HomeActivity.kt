@@ -1,6 +1,7 @@
 package com.eutechpro.smshelp.home
 
 import android.support.annotation.StringRes
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,8 +11,10 @@ import com.eutechpro.smshelp.R
 import com.eutechpro.smshelp.SmsHelpApplication
 import com.eutechpro.smshelp.extensions.format
 import com.eutechpro.smshelp.extensions.snackbar
+import com.eutechpro.smshelp.home.picker.DatePickerFragment
 import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
+import java.util.*
 
 
 open class HomeActivity : BaseActivityTransparentToolbar(), Mvp.View {
@@ -59,6 +62,18 @@ open class HomeActivity : BaseActivityTransparentToolbar(), Mvp.View {
             presenter.schedule()
         }
     }
+
+    override fun showDatePicker() {
+        val dateDialog = DatePickerFragment()
+        dateDialog.onDaySelectedListener = object: DatePickerFragment.OnDaySelected {
+            override fun dateSelected(selectedDAte: Date) {
+                Log.d("TAG", ": ")
+                presenter.scheduleAlarmForDate(selectedDAte)
+            }
+        }
+        dateDialog.show(supportFragmentManager, "date_picker")
+    }
+
 
     override fun showSnackBar(@StringRes messageId: Int, anchor: android.view.View) {
         snackbar(messageId, anchor, {

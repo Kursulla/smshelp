@@ -53,7 +53,7 @@ class ModelTest {
     fun testSuccessfullScheduling() {
         whenever(mockSmsScheduler.scheduleNextSms(any())).thenReturn(Observable.just(true))
 
-        model.schedule()
+        model.schedule(any())
 
         testSubscriber.assertNoErrors()
         testSubscriber.assertNotCompleted()
@@ -64,7 +64,7 @@ class ModelTest {
     fun testUnsuccesfullScheduling(){
         whenever(mockSmsScheduler.scheduleNextSms(any())).thenReturn(Observable.just(false))
 
-        model.schedule()
+        model.schedule(any())
 
         testSubscriber.assertNotCompleted()
         testSubscriber.assertError(Model.SchedulingException::class.java)

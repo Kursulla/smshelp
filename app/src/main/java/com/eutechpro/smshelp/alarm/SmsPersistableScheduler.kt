@@ -8,7 +8,7 @@ import com.eutechpro.smshelp.alarm.persistance.AlarmPrefsRepository
 import com.eutechpro.smshelp.extensions.sharedPreferences
 import com.eutechpro.smshelp.sms.Sms
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.debug
+import org.jetbrains.anko.info
 import rx.Observable
 
 /**
@@ -16,12 +16,12 @@ import rx.Observable
  */
 class SmsPersistableScheduler(val context: Context) : SmsScheduler, AnkoLogger {
     private val FREQUENCY_INTERVAL = 1000 * 10L
-    private val repository = AlarmPrefsRepository(context.sharedPreferences("alarms"))
+    private val repository = AlarmPrefsRepository(context.sharedPreferences())
 
     override fun scheduleNextSms(sms: Sms): Observable<Boolean> {
-        debug("Schedule Next sms")
+        info { "Schedule Next sms" }
 
-        referenceToAlarmManager().setInexactRepeating(
+        getAlarmManager().setInexactRepeating(
                 AlarmManager.RTC_WAKEUP,
                 sms.date.time,
                 FREQUENCY_INTERVAL,
@@ -30,8 +30,8 @@ class SmsPersistableScheduler(val context: Context) : SmsScheduler, AnkoLogger {
     }
 
     override fun unscheduleNextSms(sms: Sms): Observable<Boolean> {
-        debug("Un Schedule Next sms")
-        referenceToAlarmManager().cancel(pendingIntentToFireOnAlarmEvent(sms.number))
+        info("Un Schedule Next sms")
+        getAlarmManager().cancel(pendingIntentToFireOnAlarmEvent(sms.number))
         return repository.removeSmsAlarmFromStorage(sms.number)
     }
 
@@ -40,7 +40,10 @@ class SmsPersistableScheduler(val context: Context) : SmsScheduler, AnkoLogger {
     }
 
 
-    private fun referenceToAlarmManager() = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    private fun pendingIntentToFireOnAlarmEvent(alarmId: Int) = PendingIntent.getBroadcast(context, alarmId, Intent(context, AlarmServiceReceiver::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+    private fun getAlarmManager() = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+    private fun pendingIntentToFireOnAlarmEvent(alarmId: Int): PendingIntent? {
+        return PendingIntent.getBroadcast(context, alarmId, Intent(context, AlarmServiceReceiver::class.java), PendingIntent.FLAG_UPDATE_CURRENT)
+    }
 }
 

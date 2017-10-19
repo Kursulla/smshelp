@@ -1,10 +1,11 @@
 package com.eutechpro.smshelp.home
 
 import com.eutechpro.smshelp.R
+import java.util.*
 
 class Presenter(val model: Mvp.Model) : Mvp.Presenter, org.jetbrains.anko.AnkoLogger {
-    var view: Mvp.View? = null
-    val subscriptions = rx.subscriptions.CompositeSubscription()
+    private var view: Mvp.View? = null
+    private val subscriptions = rx.subscriptions.CompositeSubscription()
 
     override fun bindView(v: Mvp.View) {
         view = v
@@ -39,8 +40,12 @@ class Presenter(val model: Mvp.Model) : Mvp.Presenter, org.jetbrains.anko.AnkoLo
     }
 
     override fun schedule() {
-        model.schedule()
+        view?.showDatePicker()
     }
+    override fun scheduleAlarmForDate(dateForAlarm: Date) {
+        model.schedule(dateForAlarm)
+    }
+
 
     override fun unSchedule() {
         model.unSchedule()

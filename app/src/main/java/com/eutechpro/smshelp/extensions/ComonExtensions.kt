@@ -28,8 +28,8 @@ fun TextView.fromHtml(@StringRes textResourceId: Int) {
     }
 }
 
-fun Context.sharedPreferences(prefsName: String): SharedPreferences {
-    return getSharedPreferences(prefsName, Context.MODE_PRIVATE)
+fun Context.sharedPreferences(): SharedPreferences {
+    return getSharedPreferences("sms_help", Context.MODE_PRIVATE)
 }
 
 fun Date.format():String{

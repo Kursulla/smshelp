@@ -2,6 +2,7 @@ package com.eutechpro.smshelp.home
 
 import android.support.annotation.StringRes
 import com.eutechpro.smshelp.sms.Sms
+import java.util.*
 
 
 interface Mvp {
@@ -10,7 +11,7 @@ interface Mvp {
 //        fun getNextScheduledDateStream(): rx.Observable<Date>
         fun getNextScheduledSmsStream(): rx.Observable<Sms>
         fun checkStatus()
-        fun schedule()
+        fun schedule(dateForAlarm: Date)
         fun unSchedule()
     }
     interface View{
@@ -18,6 +19,7 @@ interface Mvp {
         fun setStatusScheduled(date: java.util.Date)
         fun setStatusNotScheduled()
         fun showError(@StringRes errorString: Int)
+        fun showDatePicker()
 
     }
     interface Presenter{
@@ -28,5 +30,6 @@ interface Mvp {
         fun checkScheduleStatus()
         fun unSchedule()
         fun schedule()
+        fun scheduleAlarmForDate(dateForAlarm: Date)
     }
 }

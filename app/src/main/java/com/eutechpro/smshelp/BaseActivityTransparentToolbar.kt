@@ -1,13 +1,12 @@
 package com.eutechpro.smshelp
 
-import android.support.annotation.IdRes
+import android.support.annotation.LayoutRes
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-
 import com.eutechpro.smshelp.about.AboutUsActivity
 import com.eutechpro.smshelp.donator.BecomeDonatorActivity
 import com.eutechpro.smshelp.friends.FriendsActivity
@@ -26,7 +25,7 @@ abstract class BaseActivityTransparentToolbar : AppCompatActivity() {
         return find(R.id.toolbar)
     }
 
-    protected fun initLayout(@IdRes contentLayoutId: Int) {
+    protected fun initLayout(@LayoutRes contentLayoutId: Int) {
         setContentView(R.layout.base_trasparent_toolbar_activity)
         toolbar.title = ""
         setSupportActionBar(toolbar)
@@ -57,7 +56,7 @@ abstract class BaseActivityTransparentToolbar : AppCompatActivity() {
         }
     }
 
-    private fun inflateContentLayout(@IdRes contentId: Int) {
+    private fun inflateContentLayout(@LayoutRes contentId: Int) {
         layoutInflater.inflate(contentId, find(R.id.content_holder))
     }
 

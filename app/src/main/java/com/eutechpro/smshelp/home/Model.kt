@@ -27,8 +27,8 @@ open class Model(val smsScheduler: SmsScheduler) : Mvp.Model, AnkoLogger {
         return smsStream
     }
 
-    override fun schedule() {
-        val sms = Sms(SMS_NUMBER, Date(), "")
+    override fun schedule(dateForAlarm: Date) {
+        val sms = Sms(SMS_NUMBER, dateForAlarm, "")//proveri da li stvarno trigeruje slanje na ovaj datum. trebalo bi da je sve OK, jer se samo datum promeni, al opet...
         smsScheduler.scheduleNextSms(sms)
                 .subscribe { scheduled ->
                     if (scheduled) {
