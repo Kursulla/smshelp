@@ -60,7 +60,7 @@ class AlarmSmsPrefsRepository(private val preferences: SharedPreferences) : Alar
     override fun modifyDateOfAlarmSms(smsNumber: Int, date: Date): Observable<Boolean> {
         return Observable.create<Boolean> {
             val modified = preferences.edit()
-                    .remove(SMS_DATE + date.time)
+                    .putLong(SMS_DATE + smsNumber, date.time)
                     .commit()
             info("modifyDateOfAlarmSms:$modified")
             it.onNext(modified)
