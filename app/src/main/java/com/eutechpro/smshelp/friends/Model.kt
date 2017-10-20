@@ -11,7 +11,7 @@ import rx.schedulers.Schedulers
 import java.util.*
 
 
-class Model(val assets: AssetManager) : Mvp.Model, AnkoLogger {
+class Model(private val assets: AssetManager) : Mvp.Model, AnkoLogger {
     override fun fetchListOfFoundationFriends(): Observable<ArrayList<Friend>> {
         return Observable.create(Observable.OnSubscribe<ArrayList<Friend>> {
             subscriber ->

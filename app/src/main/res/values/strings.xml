@@ -28,6 +28,10 @@
     <!--Error messages-->
     <string name="error_cant_check_subscription">Nismo u mogucnosti da odredimo da li ste zakazali slanje</string>
     
+    <!-- Alarm -->
+    <string name="notification_title">Donirali ste jedan SMS i podrzali zivot</string>
+    <string name="notification_content_text">Sledeci SMS ce biti poslat sledeceg meseca istog dana</string>
+    
     <!-- Become volunteer-->
     <string name="become_volunteer_activity_title">Podrzi zivot</string>
     <string name="become_volunteer_title">Postani volonter</string>
@@ -133,4 +137,5 @@ Mi imamo cilj i na kraju prihvatamo samo jednu nagradu – osmeh i radost na lic
     <string name="foundation_freinds_activity_title">Podrži život</string>
     <string name="foundation_freinds_title">Prijatelji fondacije</string>
     <string name="foundation_friends_error">Zao nam je, ne mozemo da prikazemo prijatelje. Pokusajte kasnije</string>
+    
 </resources>

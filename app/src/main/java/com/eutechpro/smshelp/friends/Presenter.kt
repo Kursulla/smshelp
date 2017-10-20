@@ -17,9 +17,10 @@ class Presenter(val model: Mvp.Model) : Mvp.Presenter, AnkoLogger {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ friends ->
                     if (friends == null || friends.isEmpty()) {
-                        throw IllegalStateException("Unable to load freinds of foundation. Model returned wrong/bad value")
+                        view.showError(R.string.foundation_friends_error, true)
+                    } else {
+                        view.drawFriends(friends)
                     }
-                    view.drawFriends(friends)
                 }, { throwable ->
                     throwable.printStackTrace()
                     view.showError(R.string.foundation_friends_error, true)

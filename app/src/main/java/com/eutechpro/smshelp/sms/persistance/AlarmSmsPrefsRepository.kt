@@ -1,9 +1,9 @@
-package com.eutechpro.smshelp.alarm.persistance
+package com.eutechpro.smshelp.sms.persistance
 
 import android.content.SharedPreferences
 import com.eutechpro.smshelp.sms.Sms
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.debug
+import org.jetbrains.anko.info
 import rx.Observable
 import java.util.*
 
@@ -11,8 +11,8 @@ import java.util.*
 /**
  * Persist data in SharedPreferences
  */
-class AlarmPrefsRepository(private val preferences: SharedPreferences) : AlarmRepository, AnkoLogger {
-    private val SMS_NUMBER = "SMS_NUMBER"
+class AlarmSmsPrefsRepository(private val preferences: SharedPreferences) : AlarmSmsRepository, AnkoLogger {
+    private val SMS_NUMBER = "SMS_NUMBER_KEY"
     private val SMS_MESSAGE = "SMS_MESSAGE"
     private val SMS_DATE = "SMS_DATE"
 
@@ -24,13 +24,13 @@ class AlarmPrefsRepository(private val preferences: SharedPreferences) : AlarmRe
                     .putLong(SMS_DATE + sms.number, sms.date.time)
                     .commit()
 
-            debug("stored:$stored")
+            info("stored:$stored")
             it.onNext(stored)
             it.onCompleted()
         }
     }
 
-    override fun fetchNextSms(smsNumber: Int): Observable<Sms> {
+    override fun fetchNextAlarmSms(smsNumber: Int): Observable<Sms> {
         return Observable.create {
             val number = preferences.getInt(SMS_NUMBER + smsNumber, 0)
             val message = preferences.getString(SMS_MESSAGE + smsNumber, null)
@@ -44,15 +44,26 @@ class AlarmPrefsRepository(private val preferences: SharedPreferences) : AlarmRe
         }
     }
 
-    override fun removeSmsAlarmFromStorage(smsNumber: Int): Observable<Boolean> {
+    override fun removeAlarmSmsFromStorage(smsNumber: Int): Observable<Boolean> {
         return Observable.create<Boolean> {
             val removed = preferences.edit()
                     .remove(SMS_NUMBER + smsNumber)
                     .remove(SMS_MESSAGE + smsNumber)
                     .remove(SMS_DATE + smsNumber)
                     .commit()
-            debug("removeSmsAlarmFromStorage:$removed")
+            info("removeAlarmSmsFromStorage:$removed")
             it.onNext(removed)
+            it.onCompleted()
+        }
+    }
+
+    override fun modifyDateOfAlarmSms(smsNumber: Int, date: Date): Observable<Boolean> {
+        return Observable.create<Boolean> {
+            val modified = preferences.edit()
+                    .remove(SMS_DATE + date.time)
+                    .commit()
+            info("modifyDateOfAlarmSms:$modified")
+            it.onNext(modified)
             it.onCompleted()
         }
     }

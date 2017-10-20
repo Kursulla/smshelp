@@ -1,6 +1,6 @@
 package com.eutechpro.smshelp.home
 
-import com.eutechpro.smshelp.alarm.SmsScheduler
+import com.eutechpro.smshelp.alarm.SmsAlarmScheduler
 import com.eutechpro.smshelp.sms.Sms
 import org.jetbrains.anko.AnkoLogger
 import rx.Observable
@@ -8,12 +8,12 @@ import rx.subjects.PublishSubject
 import java.util.*
 
 
-open class Model(val smsScheduler: SmsScheduler) : Mvp.Model, AnkoLogger {
+open class Model(private val smsAlarmScheduler: SmsAlarmScheduler) : Mvp.Model, AnkoLogger {
     private val SMS_NUMBER = 1234
     private val smsStream: PublishSubject<Sms> = PublishSubject.create()
 
     override fun checkStatus(){
-        smsScheduler.getNextScheduledSms(SMS_NUMBER).subscribe(
+        smsAlarmScheduler.getNextScheduledSms(SMS_NUMBER).subscribe(
                 { sms ->
                     smsStream.onNext(sms)
                 },
@@ -23,13 +23,11 @@ open class Model(val smsScheduler: SmsScheduler) : Mvp.Model, AnkoLogger {
         )
     }
 
-    override fun getNextScheduledSmsStream(): Observable<Sms> {
-        return smsStream
-    }
+    override fun getNextScheduledSmsStream(): Observable<Sms> = smsStream
 
     override fun schedule(dateForAlarm: Date) {
-        val sms = Sms(SMS_NUMBER, dateForAlarm, "")//proveri da li stvarno trigeruje slanje na ovaj datum. trebalo bi da je sve OK, jer se samo datum promeni, al opet...
-        smsScheduler.scheduleNextSms(sms)
+        val sms = Sms(SMS_NUMBER, dateForAlarm, "")//Right now It does not matter what we send
+        smsAlarmScheduler.scheduleNextSms(sms)
                 .subscribe { scheduled ->
                     if (scheduled) {
                         smsStream.onNext(sms)
@@ -40,7 +38,7 @@ open class Model(val smsScheduler: SmsScheduler) : Mvp.Model, AnkoLogger {
     }
 
     override fun unSchedule() {
-        smsScheduler.unscheduleNextSms(Sms(SMS_NUMBER, Date()))
+        smsAlarmScheduler.unscheduleNextSms(SMS_NUMBER)
                 .subscribe { removed ->
                     if (removed) {
                         smsStream.onNext(null)

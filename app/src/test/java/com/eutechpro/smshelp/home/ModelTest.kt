@@ -1,6 +1,6 @@
 package com.eutechpro.smshelp.home
 
-import com.eutechpro.smshelp.alarm.SmsScheduler
+import com.eutechpro.smshelp.alarm.SmsAlarmScheduler
 import com.eutechpro.smshelp.sms.Sms
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
@@ -11,11 +11,12 @@ import org.junit.Test
 import org.mockito.MockitoAnnotations
 import rx.Observable
 import rx.observers.TestSubscriber
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 
 class ModelTest {
-    private val mockSmsScheduler = mock<SmsScheduler>()
+    private val mockSmsScheduler = mock<SmsAlarmScheduler>()
     private val testSubscriber = TestSubscriber<Sms>()
     private val mockSms = mock<Sms>()
     private val model = Model(mockSmsScheduler)
@@ -32,7 +33,7 @@ class ModelTest {
         whenever(mockSmsScheduler.getNextScheduledSms(any())).thenReturn(Observable.just(mockSms))
 
         model.checkStatus()
-        testSubscriber.awaitTerminalEvent(1000,TimeUnit.MILLISECONDS)
+        testSubscriber.awaitValueCount(1, 500, TimeUnit.MILLISECONDS)
 
         testSubscriber.assertNoErrors()
         testSubscriber.assertNotCompleted()
@@ -50,10 +51,10 @@ class ModelTest {
     }
 
     @Test
-    fun testSuccessfullScheduling() {
+    fun testScheduling_OK() {
         whenever(mockSmsScheduler.scheduleNextSms(any())).thenReturn(Observable.just(true))
 
-        model.schedule(any())
+        model.schedule(Date())
 
         testSubscriber.assertNoErrors()
         testSubscriber.assertNotCompleted()
@@ -61,17 +62,17 @@ class ModelTest {
 
     }
     @Test
-    fun testUnsuccesfullScheduling(){
+    fun testScheduling_error(){
         whenever(mockSmsScheduler.scheduleNextSms(any())).thenReturn(Observable.just(false))
 
-        model.schedule(any())
+        model.schedule(Date())
 
         testSubscriber.assertNotCompleted()
         testSubscriber.assertError(Model.SchedulingException::class.java)
 
     }
     @Test
-    fun testSuccessfullInScheduling() {
+    fun testUnScheduling_OK() {
         whenever(mockSmsScheduler.unscheduleNextSms(any())).thenReturn(Observable.just(true))
 
         model.unSchedule()
@@ -82,7 +83,7 @@ class ModelTest {
     }
 
     @Test
-    fun testUnSuccessfullInScheduling() {
+    fun testUnScheduling_error() {
         whenever(mockSmsScheduler.unscheduleNextSms(any())).thenReturn(Observable.just(false))
 
         model.unSchedule()

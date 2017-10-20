@@ -1,9 +1,9 @@
-package com.eutechpro.smshelp.alarm.persistance
+package com.eutechpro.smshelp.sms.persistance
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.eutechpro.smshelp.BuildConfig
-import com.eutechpro.smshelp.TestingApplication
+import android.support.test.InstrumentationRegistry.getInstrumentation
+import android.support.test.runner.AndroidJUnit4
 import com.eutechpro.smshelp.sms.Sms
 import junit.framework.Assert.assertEquals
 import org.junit.After
@@ -12,37 +12,25 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
-import org.robolectric.annotation.Config
 import rx.observers.TestSubscriber
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-@RunWith(RobolectricTestRunner::class)
-@Config(
-        constants = BuildConfig::class,
-        application = TestingApplication::class
-)
+@RunWith(AndroidJUnit4::class)
 class AlarmPrefsRepositoryTest {
     private val SMS_NUMBER = 111
     private val SMS_DATE = Date()
     private val SMS_MESSAGE = "SMS_MESSAGE_TEST"
 
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var alarmRepository: AlarmRepository
+    private lateinit var alarmRepository: AlarmSmsRepository
     private var testSubscriber = TestSubscriber<Sms>()
 
     @Before
     fun setUp() {
-        sharedPreferences = RuntimeEnvironment.application.getSharedPreferences("test", Context.MODE_PRIVATE)
-        alarmRepository = AlarmPrefsRepository(sharedPreferences)
-    }
-
-
-    @Test
-    fun storeNextAlarmSms() {
-
+        val context = getInstrumentation().targetContext
+        sharedPreferences = context.getSharedPreferences("test", Context.MODE_PRIVATE)
+        alarmRepository = AlarmSmsPrefsRepository(sharedPreferences)
     }
 
 
@@ -53,8 +41,8 @@ class AlarmPrefsRepositoryTest {
         storeSmsJustForTest(sms)
 
         //When
-        alarmRepository.fetchNextSms(SMS_NUMBER).subscribe(testSubscriber)
-        testSubscriber.awaitTerminalEvent(1000, TimeUnit.MILLISECONDS)
+        alarmRepository.fetchNextAlarmSms(SMS_NUMBER).subscribe(testSubscriber)
+        testSubscriber.awaitValueCount(1, 500, TimeUnit.MILLISECONDS)
 
         //Then
         testSubscriber.assertNoErrors()
@@ -63,10 +51,10 @@ class AlarmPrefsRepositoryTest {
     }
 
     @Test
-    fun fetchNextSmsWhenThereIsNOSmsStored() {
+    fun fetchNextSmsWhenThereIsNoSmsStored() {
         //Given
-        alarmRepository.fetchNextSms(SMS_NUMBER).subscribe(testSubscriber)
-        testSubscriber.awaitTerminalEvent(1000, TimeUnit.MILLISECONDS)
+        alarmRepository.fetchNextAlarmSms(SMS_NUMBER).subscribe(testSubscriber)
+        testSubscriber.awaitValueCount(1, 500, TimeUnit.MILLISECONDS)
 
         //Then
         testSubscriber.assertNoErrors()
@@ -82,8 +70,8 @@ class AlarmPrefsRepositoryTest {
         val testSubscriber = TestSubscriber<Boolean>()
 
         //When
-        alarmRepository.removeSmsAlarmFromStorage(SMS_NUMBER).subscribe(testSubscriber)
-        testSubscriber.awaitTerminalEvent(1000, TimeUnit.MILLISECONDS)
+        alarmRepository.removeAlarmSmsFromStorage(SMS_NUMBER).subscribe(testSubscriber)
+        testSubscriber.awaitValueCount(1, 500, TimeUnit.MILLISECONDS)
 
         //Then
         testSubscriber.assertNoErrors()
@@ -103,7 +91,7 @@ class AlarmPrefsRepositoryTest {
      */
     private fun storeSmsJustForTest(sms: Sms) {
         sharedPreferences.edit()
-                .putInt("SMS_NUMBER" + sms.number, sms.number)
+                .putInt("SMS_NUMBER_KEY" + sms.number, sms.number)
                 .putString("SMS_MESSAGE" + sms.number, sms.message)
                 .putLong("SMS_DATE" + sms.number, sms.date.time)
                 .commit()
@@ -111,7 +99,7 @@ class AlarmPrefsRepositoryTest {
 
     private fun removeSmsJustForTest(smsNumber: Int) {
         sharedPreferences.edit()
-                .remove("SMS_NUMBER" + smsNumber)
+                .remove("SMS_NUMBER_KEY" + smsNumber)
                 .remove("SMS_MESSAGE" + smsNumber)
                 .remove("SMS_DATE" + smsNumber)
                 .commit()

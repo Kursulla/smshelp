@@ -59,7 +59,7 @@ class FriendsPresenterTest : BaseRxTest() {
     }
 
     @Test
-    fun testHandlingBadLoadingOfFreinds() {
+    fun testLoadingFriends_error() {
         //Given
         whenever(modelMock.fetchListOfFoundationFriends()).thenReturn(Observable.just(null))
 

@@ -29,12 +29,17 @@ open class HomeActivity : BaseActivityTransparentToolbar(), Mvp.View {
         initLayout(R.layout.home_incl_content)
         SmsHelpApplication.homeDaggerComponent.inject(this)
         presenter = SmsHelpApplication.homeDaggerComponent.getPresenter()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         presenter.bindView(this)
         presenter.checkScheduleStatus()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
         presenter.unBindView()
     }
 
@@ -66,9 +71,9 @@ open class HomeActivity : BaseActivityTransparentToolbar(), Mvp.View {
     override fun showDatePicker() {
         val dateDialog = DatePickerFragment()
         dateDialog.onDaySelectedListener = object: DatePickerFragment.OnDaySelected {
-            override fun dateSelected(selectedDAte: Date) {
+            override fun dateSelected(date: Date) {
                 Log.d("TAG", ": ")
-                presenter.scheduleAlarmForDate(selectedDAte)
+                presenter.scheduleAlarmForDate(date)
             }
         }
         dateDialog.show(supportFragmentManager, "date_picker")

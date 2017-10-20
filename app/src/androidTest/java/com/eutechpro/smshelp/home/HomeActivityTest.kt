@@ -5,7 +5,7 @@ import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.test.rule.UiThreadTestRule
+import android.support.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
 import android.support.test.runner.AndroidJUnit4
 import com.eutechpro.smshelp.DelayedActivityTestRule
 import com.eutechpro.smshelp.R
@@ -24,8 +24,6 @@ import java.util.*
 
 @RunWith(AndroidJUnit4::class)
 class HomeActivityTest {
-    private val presenter = mock<Mvp.Presenter>()
-
     @Rule
     @JvmField
     public var activityTestRule: DelayedActivityTestRule<HomeActivity> = DelayedActivityTestRule(
@@ -36,11 +34,8 @@ class HomeActivityTest {
                 SmsHelpApplication.homeDaggerComponent = homeDaggerComponent
             })
 
-    lateinit var view: HomeActivity
-
-    @Rule
-    @JvmField
-    public var uiThreadTestRule = UiThreadTestRule()
+    private val presenter = mock<Mvp.Presenter>()
+    private lateinit var view: HomeActivity
 
     @Before
     fun setUp() {
@@ -48,13 +43,13 @@ class HomeActivityTest {
     }
 
     @Test
-    fun testSettingStatus_scheduled() {
+    fun testScheduling() {
         //Given
         val format = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
         val date = format.parse("27/04/1985") as Date
 
         //When
-        uiThreadTestRule.runOnUiThread {
+        runOnUiThread {
             view.setStatusScheduled(date)
         }
 
@@ -66,11 +61,11 @@ class HomeActivityTest {
     }
 
     @Test
-    fun testSettingStatus_unscheduled() {
+    fun testUnScheduling() {
         //Given
 
         //When
-        uiThreadTestRule.runOnUiThread {
+        runOnUiThread {
             view.setStatusNotScheduled()
         }
 

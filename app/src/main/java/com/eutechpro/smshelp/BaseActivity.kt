@@ -1,6 +1,7 @@
 package com.eutechpro.smshelp
 
 import android.support.annotation.IdRes
+import android.support.annotation.LayoutRes
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -65,7 +66,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun inflateContentLayout(@IdRes contentId: Int) {
+    private fun inflateContentLayout(@LayoutRes contentId: Int) {
         layoutInflater.inflate(contentId, find(R.id.content_holder))
     }
 
