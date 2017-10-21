@@ -20,6 +20,7 @@
     <style name="h">
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="font">OpenSans-Light.ttf</item>
+        <item name="android:lineSpacingExtra">@dimen/text_line_spacing</item>
     </style>
     
     <style name="h1" parent="h">
@@ -40,10 +41,12 @@
         <item name="font">OpenSans-Regular.ttf</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">@dimen/text_line_spacing</item>
     </style>
     <style name="text_italic">
         <item name="font">OpenSans-Italic.ttf</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">@dimen/text_line_spacing</item>
     </style>
 </resources>

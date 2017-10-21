@@ -44,7 +44,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/small_margin"
         android:layout_marginTop="@dimen/small_margin"
-        android:lineSpacingExtra="8sp"
+        android:lineSpacingExtra="@dimen/text_line_spacing"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="#ffffff"
