@@ -1,6 +1,5 @@
 package com.eutechpro.smshelp
 
-import android.support.annotation.IdRes
 import android.support.annotation.LayoutRes
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -8,7 +7,6 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-
 import com.eutechpro.smshelp.about.AboutUsActivity
 import com.eutechpro.smshelp.donator.BecomeDonatorActivity
 import com.eutechpro.smshelp.friends.FriendsActivity
@@ -36,7 +34,7 @@ abstract class BaseActivity : AppCompatActivity() {
         return find(R.id.toolbar)
     }
 
-    protected fun initLayout(@IdRes contentLayoutId: Int) {
+    protected fun initLayout(@LayoutRes contentLayoutId: Int) {
         setContentView(R.layout.base_activity)
         setSupportActionBar(toolbar)
         initDrawer()

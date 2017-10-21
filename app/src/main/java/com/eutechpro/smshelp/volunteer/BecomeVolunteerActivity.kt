@@ -4,14 +4,10 @@ import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.R
-import com.eutechpro.smshelp.customviews.TextViewFont
 import com.eutechpro.smshelp.extensions.fromHtml
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.become_volunteer_incl_content.*
 
 class BecomeVolunteerActivity : BaseActivity() {
-    private val description: TextViewFont
-        get() = find(R.id.description)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initLayout(R.layout.become_volunteer_incl_content)
@@ -19,7 +15,7 @@ class BecomeVolunteerActivity : BaseActivity() {
         description.fromHtml(R.string.become_volunteer_description)
         description.movementMethod = LinkMovementMethod.getInstance()
 
-        find<TextViewFont>(R.id.moto).fromHtml(R.string.become_volunteer_moto)
+        moto.fromHtml(R.string.become_volunteer_moto)
     }
 
     override fun selectMenuItem() {

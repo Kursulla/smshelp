@@ -22,7 +22,7 @@
         />
     
     <com.eutechpro.smshelp.customviews.TextViewFont
-        android:id="@+id/status_message"
+        android:id="@+id/statusMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_margin"
@@ -39,7 +39,7 @@
         />
     
     <com.eutechpro.smshelp.customviews.TextViewFont
-        android:id="@+id/status_description"
+        android:id="@+id/statusDescription"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/small_margin"
@@ -50,17 +50,17 @@
         android:textColor="#ffffff"
         android:textSize="@dimen/home_page_description_font_size"
         app:font="Roboto-Thin.ttf"
-        app:layout_constraintBottom_toTopOf="@+id/tmp_schedule_button"
+        app:layout_constraintBottom_toTopOf="@+id/scheduleBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status_message"
+        app:layout_constraintTop_toBottomOf="@+id/statusMessage"
         tools:text="@string/not_scheduled_status_description"
         />
     
     <com.eutechpro.smshelp.customviews.ButtonFont
-        android:id="@+id/tmp_schedule_button"
+        android:id="@+id/scheduleBtn"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/home_page_button_height"
         android:layout_marginRight="@dimen/small_margin"

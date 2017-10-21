@@ -4,16 +4,11 @@ import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.R
-import com.eutechpro.smshelp.customviews.TextViewFont
 import com.eutechpro.smshelp.extensions.fromHtml
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.about_us_incl_content.*
 
 
 class AboutUsActivity : BaseActivity() {
-    private val missionText: TextViewFont get() = find(R.id.mission_text)
-    private val vissionText: TextViewFont get() = find(R.id.vission_text)
-    private val goalsText: TextViewFont get() = find(R.id.goals_text)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initLayout(R.layout.about_us_incl_content)

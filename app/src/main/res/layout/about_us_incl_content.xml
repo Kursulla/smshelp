@@ -159,7 +159,7 @@
             />
         
         <com.eutechpro.smshelp.customviews.TextViewFont
-            android:id="@+id/mission_text"
+            android:id="@+id/missionText"
             style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -184,12 +184,13 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toBottomOf="@+id/mission_text"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/missionText"
             tools:text="@string/about_us_vission_title"
             />
         
         <com.eutechpro.smshelp.customviews.TextViewFont
-            android:id="@+id/vission_text"
+            android:id="@+id/vissionText"
             style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -215,12 +216,12 @@
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vission_text"
+            app:layout_constraintTop_toBottomOf="@+id/vissionText"
             tools:text="@string/about_us_goals_title"
             />
         
         <com.eutechpro.smshelp.customviews.TextViewFont
-            android:id="@+id/goals_text"
+            android:id="@+id/goalsText"
             style="@style/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

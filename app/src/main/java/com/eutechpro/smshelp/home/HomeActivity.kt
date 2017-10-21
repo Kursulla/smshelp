@@ -2,27 +2,21 @@ package com.eutechpro.smshelp.home
 
 import android.support.annotation.StringRes
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.BaseActivityTransparentToolbar
 import com.eutechpro.smshelp.R
+
 import com.eutechpro.smshelp.SmsHelpApplication
 import com.eutechpro.smshelp.extensions.format
 import com.eutechpro.smshelp.extensions.snackbar
 import com.eutechpro.smshelp.home.picker.DatePickerFragment
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.home_incl_content.*
 import org.jetbrains.anko.toast
 import java.util.*
 
 
 open class HomeActivity : BaseActivityTransparentToolbar(), Mvp.View {
     internal lateinit var presenter: Mvp.Presenter
-    private val statusMessage: TextView get() = find(R.id.status_message)
-    private val statusDescription: TextView get() = find(R.id.status_description)
-    private val scheduleBtn: Button get() = find(R.id.tmp_schedule_button)
-    private val heart: ImageView get() = find(R.id.heart)
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,10 +83,4 @@ open class HomeActivity : BaseActivityTransparentToolbar(), Mvp.View {
     override fun showError(errorString: Int) {
         throw UnsupportedOperationException("This method is still not implemented")
     }
-
-    protected open fun injectPresenter(): Mvp.Presenter {
-        return SmsHelpApplication.homeDaggerComponent.getPresenter()
-    }
-
-
 }

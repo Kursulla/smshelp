@@ -4,15 +4,11 @@ import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import com.eutechpro.smshelp.BaseActivity
 import com.eutechpro.smshelp.R
-import com.eutechpro.smshelp.customviews.TextViewFont
 import com.eutechpro.smshelp.extensions.fromHtml
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.become_donator_incl_content.*
 
 
 class BecomeDonatorActivity : BaseActivity() {
-    private val description: TextViewFont
-        get() = find(R.id.description)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initLayout(R.layout.become_donator_incl_content)
