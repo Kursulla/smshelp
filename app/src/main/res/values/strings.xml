@@ -14,11 +14,11 @@
     <string name="nav_friends">Prijatelji fondacije</string>
     <string name="nav_contacts">Kontakt</string>
     <string name="scheduled_status_title">Sledece slanje je \n%1$s</string>
-    <string name="scheduled_status_description">Svakim vašim SMS-om pomažete jednoj bolesnoj osobi da bude korak bliže izlečenju.</string>
+    <string name="scheduled_status_description">Jednom mesešno, odabranog dana, aplikacija će za vas poslati jedan SMS i donirati 100 dinara.</string>
     <string name="scheduled_btn">Ugasi mesečno slanje</string>
-    <string name="not_scheduled_status_title">Još uvek niste uključili mesečno slanje?</string>
-    <string name="not_scheduled_status_description">Zakažite slanje SMS-a i svakog meseca aplikacija ce poslati JEDAN sms za vas. 100 dinara mesečno nekome možda znači ceo život!!!</string>
-    <string name="not_scheduled_btn">Da, želim da pomognem</string>
+    <string name="not_scheduled_status_title">Šaljite SMS jednom mesečno</string>
+    <string name="not_scheduled_status_description">Zakažite slanje SMS-a i svakog meseca aplikacija ce poslati JEDAN SMS za vas. 100 dinara mesečno nekome možda znači ceo život!!!</string>
+    <string name="not_scheduled_btn">Podesi slanje svakog meseca</string>
     
     <!--Snacks/Toasts-->
     <string name="snack_unscheduled">Uklonili ste zakazano slanje poruke!</string>
@@ -29,11 +29,11 @@
     <string name="error_cant_check_subscription">Nismo u mogucnosti da odredimo da li ste zakazali slanje</string>
     
     <!-- Alarm -->
-    <string name="notification_title">Donirali ste jedan SMS i podrzali zivot</string>
+    <string name="notification_title">Donirali ste jedan SMS</string>
     <string name="notification_content_text">Sledeci SMS ce biti poslat sledeceg meseca istog dana</string>
     
     <!-- Become volunteer-->
-    <string name="become_volunteer_activity_title">Podrzi zivot</string>
+    <string name="become_volunteer_activity_title">Podrži zivot</string>
     <string name="become_volunteer_title">Postani volonter</string>
     <string name="become_volunteer_description"><![CDATA[
     Fondacija <b>„Podrži život“</b> vas poziva da postanete deo našeg tima!
@@ -137,5 +137,6 @@ Mi imamo cilj i na kraju prihvatamo samo jednu nagradu – osmeh i radost na lic
     <string name="foundation_freinds_activity_title">Podrži život</string>
     <string name="foundation_freinds_title">Prijatelji fondacije</string>
     <string name="foundation_friends_error">Zao nam je, ne mozemo da prikazemo prijatelje. Pokusajte kasnije</string>
-    
+    <string name="home_page_schedule_btn">Da, zelim da pomognem</string>
+
 </resources>

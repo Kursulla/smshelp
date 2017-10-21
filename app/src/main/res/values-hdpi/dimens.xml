@@ -1,4 +1,10 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="home_page_hearth_height">150dp</dimen>
+    <dimen name="big_margin">8dp</dimen>
+    <dimen name="small_margin">4dp</dimen>
+    <dimen name="big_padding">8dp</dimen>
+    <dimen name="small_padding">4dp</dimen>
+    
+    <dimen name="home_page_title_font_size">16sp</dimen>
+    <dimen name="home_page_description_font_size">12sp</dimen>
+    <dimen name="home_page_button_height">40dp</dimen>
 </resources>
