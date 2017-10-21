@@ -27,7 +27,7 @@
             />
     </group>
     
-    <item android:title="O nama">
+    <item android:title="@string/nav_section_about_us">
         <menu>
             <item
                 android:id="@+id/nav_about_us"
@@ -41,27 +41,12 @@
                 />
         </menu>
     </item>
-    <item android:title="Kontakt">
+    <item android:title="@string/nav_section_contakt">
         <menu>
             <item
                 android:id="@+id/nav_contact"
                 android:icon="@drawable/ic_menu_camera"
                 android:title="@string/nav_contacts"
-                />
-            <item
-                android:id="@+id/nav_facebook"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="Facebook"
-                />
-            <item
-                android:id="@+id/nav_instagram"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="Instagram"
-                />
-            <item
-                android:id="@+id/nav_twitter"
-                android:icon="@drawable/ic_menu_camera"
-                android:title="Twitter"
                 />
         </menu>
     </item>

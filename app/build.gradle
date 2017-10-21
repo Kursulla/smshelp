@@ -41,7 +41,7 @@ android {
 
         develop {
             dimension "type"
-            minSdkVersion 23
+            minSdkVersion 16
         }
     }
     sourceSets {

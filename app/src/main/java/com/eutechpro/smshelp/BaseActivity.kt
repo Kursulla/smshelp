@@ -30,7 +30,7 @@ abstract class BaseActivity : AppCompatActivity() {
         return find(R.id.nav_view)
     }
 
-    protected val toolbar: Toolbar get() {
+    private val toolbar: Toolbar get() {
         return find(R.id.toolbar)
     }
 

@@ -11,18 +11,20 @@
     >
     
     <ImageView
-        android:id="@+id/friend_image"
+        android:id="@+id/friendImage"
         android:layout_width="70dp"
         android:layout_height="70dp"
         tools:src="@drawable/ic_menu_camera"
         />
     
     <com.eutechpro.smshelp.customviews.TextViewFont
-        android:id="@+id/friend_name"
+        android:id="@+id/friendName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:lines="3"
         tools:text="Friend \nName"
         style="@style/text_italic"
+        android:lineSpacingExtra="0.2sp"
         />
 </LinearLayout>

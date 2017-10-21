@@ -9,9 +9,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
-/**
- * Created by Kursulla on 14/01/16.
- */
+@SuppressWarnings("ALL")
 public class TextViewMatchers {
     /**
      * Match does target {@link TextView} has {@link Typeface#BOLD} style set

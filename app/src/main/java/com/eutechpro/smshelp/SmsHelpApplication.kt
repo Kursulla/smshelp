@@ -42,9 +42,9 @@ open class SmsHelpApplication : Application() {
     @Module
     class ApplicationDaggerModule(private var application: Application) {
         @Provides
-        fun providesApplicationContext() = application.applicationContext
+        fun providesApplicationContext() = application.applicationContext!!
 
         @Provides
-        fun providesAssetManager() = application.assets
+        fun providesAssetManager() = application.assets!!
     }
 }

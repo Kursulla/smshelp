@@ -12,9 +12,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
-/**
- * Created by Kursulla on 14/01/16.
- */
+@SuppressWarnings("ALL")
 public class ButtonMatcher {
     private static final int POSITION_LEFT = 0;
     private static final int POSITION_TOP = 1;
@@ -24,7 +22,7 @@ public class ButtonMatcher {
     /**
      * Match does target {@link Button} has appropriate {@link Drawable} resource on place of Left compound background.
      *
-     * @param resourceId
+     * @param resourceId expected resource.
      * @return Does it match or not.
      */
     public static Matcher<View> buttonHasLeftCompoundBackground(@DrawableRes final int resourceId) {
@@ -49,7 +47,7 @@ public class ButtonMatcher {
     /**
      * Match does target {@link Button} has appropriate {@link Drawable} resource on place of Top compound background.
      *
-     * @param resourceId
+     * @param resourceId  targeted resource.
      * @return Does it match or not.
      */
     public static Matcher<View> buttonHasTopCompoundBackground(@DrawableRes final int resourceId) {
@@ -72,7 +70,7 @@ public class ButtonMatcher {
     /**
      * Match does target {@link Button} has appropriate {@link Drawable} resource on place of Right compound background.
      *
-     * @param resourceId
+     * @param resourceId targeted resource.
      * @return Does it match or not.
      */
     public static Matcher<View> buttonHasRightCompoundBackground(@DrawableRes final int resourceId) {
@@ -95,7 +93,7 @@ public class ButtonMatcher {
     /**
      * Match does target {@link Button} has appropriate {@link Drawable} resource on place of Bottom compound background.
      *
-     * @param resourceId
+     * @param resourceId targeted resource.
      * @return Does it match or not.
      */
     public static Matcher<View> buttonHasBottomCompoundBackground(@DrawableRes final int resourceId) {

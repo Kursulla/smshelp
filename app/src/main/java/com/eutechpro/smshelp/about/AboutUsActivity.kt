@@ -16,7 +16,7 @@ class AboutUsActivity : BaseActivity() {
         missionText.fromHtml(R.string.about_us_mission_text)
         missionText.movementMethod = LinkMovementMethod.getInstance()
 
-        vissionText.fromHtml(R.string.about_us_mission_text)
+        vissionText.fromHtml(R.string.about_us_vission_text)
         vissionText.movementMethod = LinkMovementMethod.getInstance()
 
         goalsText.fromHtml(R.string.about_us_goals_text)

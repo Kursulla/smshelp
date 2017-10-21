@@ -5,7 +5,6 @@
     <!--Navigation-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
     <string name="nav_donate_sms">Doniraj SMS</string>
     <string name="nav_become_volunteer">Postani volonter</string>
     <string name="nav_become_donator">Postani donator</string>
@@ -138,5 +137,7 @@ Mi imamo cilj i na kraju prihvatamo samo jednu nagradu – osmeh i radost na lic
     <string name="foundation_freinds_title">Prijatelji fondacije</string>
     <string name="foundation_friends_error">Zao nam je, ne mozemo da prikazemo prijatelje. Pokusajte kasnije</string>
     <string name="home_page_schedule_btn">Da, zelim da pomognem</string>
+    <string name="nav_section_about_us">O nama</string>
+    <string name="nav_section_contakt">Kontakt</string>
 
 </resources>

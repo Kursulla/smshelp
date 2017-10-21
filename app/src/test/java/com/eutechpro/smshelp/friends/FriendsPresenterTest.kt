@@ -10,6 +10,7 @@ import rx.Observable
 import java.util.*
 
 
+@Suppress("RemoveExplicitTypeArguments")
 class FriendsPresenterTest : BaseRxTest() {
     private val modelMock = mock<Mvp.Model>()
     private val viewMock = mock<Mvp.View>()
@@ -73,7 +74,7 @@ class FriendsPresenterTest : BaseRxTest() {
     @Test
     fun testHandlingLoadingEmptyArrayOfFreinds() {
         //Given
-        whenever(modelMock.fetchListOfFoundationFriends()).thenReturn(Observable.just(ArrayList<Friend>()))
+        whenever(modelMock.fetchListOfFoundationFriends()).thenReturn(Observable.just(ArrayList()))
 
         //When
         spiedPresenter.bindView(viewMock)

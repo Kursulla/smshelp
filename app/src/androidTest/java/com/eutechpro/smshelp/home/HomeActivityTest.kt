@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
+@Suppress("RedundantVisibilityModifier")
 @RunWith(AndroidJUnit4::class)
 class HomeActivityTest {
     @Rule

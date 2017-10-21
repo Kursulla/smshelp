@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -27,7 +27,7 @@
         <item name="android:textSize">30sp</item>
     </style>
     
-    <style name="h2" parent="h">
+    <style name="h2" parent="h" tools:keep="@style/h2">
         <item name="android:textSize">24sp</item>
     </style>
     

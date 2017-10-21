@@ -71,8 +71,5 @@ class AlarmServiceReceiver : BroadcastReceiver(), AnkoLogger {
         override fun call(throwable: Throwable?) {
             info("Some shit happened: $throwable")
         }
-
     }
-
-
 }

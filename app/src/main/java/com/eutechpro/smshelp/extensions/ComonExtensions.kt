@@ -8,6 +8,7 @@ import android.os.Build
 import android.support.annotation.StringRes
 import android.text.Html
 import android.text.Html.FROM_HTML_MODE_COMPACT
+
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
@@ -21,10 +22,10 @@ import java.util.*
 
 @Suppress("DEPRECATION")
 fun TextView.fromHtml(@StringRes textResourceId: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        text = Html.fromHtml(resources.getString(textResourceId), FROM_HTML_MODE_COMPACT)
+    text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(resources.getString(textResourceId), FROM_HTML_MODE_COMPACT)
     } else {
-        text = Html.fromHtml(resources.getString(textResourceId))
+        Html.fromHtml(resources.getString(textResourceId))
     }
 }
 

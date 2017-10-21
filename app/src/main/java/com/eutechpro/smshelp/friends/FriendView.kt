@@ -3,17 +3,12 @@ package com.eutechpro.smshelp.friends
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import android.widget.ImageView
 import android.widget.LinearLayout
 import com.eutechpro.smshelp.R
-import com.eutechpro.smshelp.customviews.TextViewFont
 import com.eutechpro.smshelp.extensions.load
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.freinds_view.view.*
 
 class FriendView : LinearLayout {
-    private val friendImage: ImageView get() = find(R.id.friend_image)
-    private val friendName: TextViewFont get() = find(R.id.friend_name)
-
     constructor(context: Context) : super(context) {
         init()
     }
@@ -26,10 +21,9 @@ class FriendView : LinearLayout {
         init()
     }
 
-
     private fun init() {
         View.inflate(context, R.layout.freinds_view, this)
-        friendImage.setImageResource(R.mipmap.ic_launcher)//todo change to placeholder
+        friendImage.setImageResource(R.drawable.friends_place_holder)
 
     }
 

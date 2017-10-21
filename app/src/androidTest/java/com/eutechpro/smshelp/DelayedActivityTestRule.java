@@ -14,11 +14,6 @@ public class DelayedActivityTestRule <T extends Activity> extends ActivityTestRu
     }
 
     @Override
-    protected void afterActivityLaunched() {
-        super.afterActivityLaunched();
-    }
-
-    @Override
     protected void beforeActivityLaunched() {
         super.beforeActivityLaunched();
         onBeforeActivityLaunchedListener.beforeActivityLaunched(getActivity());
