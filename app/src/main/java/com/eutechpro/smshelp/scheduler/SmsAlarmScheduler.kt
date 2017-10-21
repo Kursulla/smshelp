@@ -1,47 +1,29 @@
-package com.eutechpro.smshelp.alarm
+package com.eutechpro.smshelp.scheduler
 
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import com.eutechpro.smshelp.extensions.sharedPreferences
 import com.eutechpro.smshelp.sms.Sms
-import com.eutechpro.smshelp.sms.persistance.AlarmSmsPrefsRepository
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import rx.Observable
 
 @Suppress("PrivatePropertyName")
 /**
  * Used to schedule and un schedule sending of SMS at certain date.
  */
-//todo Scheduler have to schedule and nothing else! Move Repository out of scheduler and do it, if needed, in Model!
-class PersistableSmsAlarmScheduler(val context: Context) : SmsAlarmScheduler, AnkoLogger {
-    private val FREQUENCY_INTERVAL = 1000 * 5L
-    private val repository = AlarmSmsPrefsRepository(context.sharedPreferences())
+class SmsAlarmScheduler(val context: Context) : SendingSmsScheduler, AnkoLogger {
+    private val FREQUENCY_INTERVAL = 1000 * 5L//for production, switch to 1 month
 
-    override fun scheduleNextSms(sms: Sms): Observable<Boolean> {
+    override fun scheduleNextSms(sms: Sms) {
         info { "Schedule Next sms" }
-        scheduleAlarmForSms(sms)
-        return repository.storeNextAlarmSms(sms)
-    }
-
-    override fun unscheduleNextSms(smsNumber: Int): Observable<Boolean> {
-        info("Un Schedule Next sms")
-        unscheduleAlarmForSms(smsNumber)
-        return repository.removeAlarmSmsFromStorage(smsNumber)
-    }
-
-    override fun getNextScheduledSms(smsNumber: Int): Observable<Sms> {
-        return repository.fetchNextAlarmSms(smsNumber)
-    }
-
-    private fun scheduleAlarmForSms(sms: Sms) {
         getAlarmManager().setInexactRepeating(AlarmManager.RTC_WAKEUP, sms.date.time,
                 FREQUENCY_INTERVAL, pendingIntentToFireOnAlarmEvent(sms.number))
+        return
     }
 
-    private fun unscheduleAlarmForSms(smsNumber: Int) {
+    override fun unscheduleNextSms(smsNumber: Int){
+        info("Un Schedule Next sms")
         getAlarmManager().cancel(pendingIntentToFireOnAlarmEvent(smsNumber))
     }
 

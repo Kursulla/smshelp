@@ -1,13 +1,13 @@
-package com.eutechpro.smshelp.alarm
+package com.eutechpro.smshelp.scheduler
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.eutechpro.smshelp.extensions.sharedPreferences
+import com.eutechpro.smshelp.notifications.SmsNotificationsManager
 import com.eutechpro.smshelp.sms.Sms
-import com.eutechpro.smshelp.sms.SmsNotificationsManager
-import com.eutechpro.smshelp.sms.persistance.AlarmSmsPrefsRepository
-import com.eutechpro.smshelp.sms.persistance.AlarmSmsRepository
+import com.eutechpro.smshelp.sms.persistance.SmsPrefsRepository
+import com.eutechpro.smshelp.sms.persistance.SmsRepository
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import rx.functions.Action1
@@ -24,7 +24,7 @@ class AlarmServiceReceiver : BroadcastReceiver(), AnkoLogger {
         const val SMS_NUMBER_KEY = "com.eutechpro.smshelp.SMS_NUMBER_KEY"
     }
 
-    private lateinit var alarmSmsRepository: AlarmSmsRepository
+    private lateinit var alarmSmsRepository: SmsRepository
 
     override fun onReceive(context: Context, intent: Intent) {
         info("onReceive")
@@ -38,20 +38,20 @@ class AlarmServiceReceiver : BroadcastReceiver(), AnkoLogger {
         SmsNotificationsManager().showNotification(context)
 
         //todo inject
-        alarmSmsRepository = AlarmSmsPrefsRepository(context.sharedPreferences())
+        alarmSmsRepository = SmsPrefsRepository(context.sharedPreferences())
         alarmSmsRepository
-                .fetchNextAlarmSms(smsNumber)
+                .fetchNextSms(smsNumber)
                 .subscribeOn(Schedulers.io())
                 .subscribe(ChangeSmsAlarmAction(alarmSmsRepository), FetchingAlarmSmsErrorAction())
     }
 
-    private class ChangeSmsAlarmAction(val alarmRepository: AlarmSmsRepository) : Action1<Sms>, AnkoLogger {
+    private class ChangeSmsAlarmAction(val alarmRepository: SmsRepository) : Action1<Sms>, AnkoLogger {
         override fun call(sms: Sms?) {
             if (sms == null) {
                 return
             }
             val newDate = changeSmsDateByOneMonth(sms.date)
-            alarmRepository.modifyDateOfAlarmSms(sms.number, newDate)
+            alarmRepository.modifyDateOfSms(sms.number, newDate)
                     .subscribe(
                             { modified -> info("date modified:$modified") },
                             { throwable -> info("error saving: $throwable") }

@@ -1,13 +1,15 @@
 package com.eutechpro.smshelp.home
 
-import com.eutechpro.smshelp.alarm.SmsAlarmScheduler
+import com.eutechpro.smshelp.scheduler.SendingSmsScheduler
 import com.eutechpro.smshelp.sms.Sms
+import com.eutechpro.smshelp.sms.persistance.SmsRepository
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import rx.Observable
 import rx.observers.TestSubscriber
@@ -16,10 +18,11 @@ import java.util.concurrent.TimeUnit
 
 
 class ModelTest {
-    private val mockSmsScheduler = mock<SmsAlarmScheduler>()
+    private val mockSmsScheduler = mock<SendingSmsScheduler>()
+    private val mockSmsRepository = mock<SmsRepository>()
     private val testSubscriber = TestSubscriber<Sms>()
     private val mockSms = mock<Sms>()
-    private val model = Model(mockSmsScheduler)
+    private val model = Model(mockSmsScheduler, mockSmsRepository)
 
     @Before
     fun setUp() {
@@ -30,7 +33,7 @@ class ModelTest {
 
     @Test
     fun testCheckStatusWhenSmsScheduled() {
-        whenever(mockSmsScheduler.getNextScheduledSms(any())).thenReturn(Observable.just(mockSms))
+        whenever(mockSmsRepository.fetchNextSms(any())).thenReturn(Observable.just(mockSms))
 
         model.checkStatus()
         testSubscriber.awaitValueCount(1, 500, TimeUnit.MILLISECONDS)
@@ -41,7 +44,7 @@ class ModelTest {
     }
     @Test
     fun testCheckStatusWhenSmsNotScheduled() {
-        whenever(mockSmsScheduler.getNextScheduledSms(any())).thenReturn(Observable.just(null))
+        whenever(mockSmsRepository.fetchNextSms(any())).thenReturn(Observable.just(null))
 
         model.checkStatus()
 
@@ -52,18 +55,20 @@ class ModelTest {
 
     @Test
     fun testScheduling_OK() {
-        whenever(mockSmsScheduler.scheduleNextSms(any())).thenReturn(Observable.just(true))
+        whenever(mockSmsRepository.storeNextSms(any())).thenReturn(Observable.just(true))
+        val currentDate = Date()
+        model.schedule(currentDate)
 
-        model.schedule(Date())
-
+        verify(mockSmsScheduler).scheduleNextSms(any())
         testSubscriber.assertNoErrors()
         testSubscriber.assertNotCompleted()
-        assertNotNull(testSubscriber.onNextEvents[0])
-
+        val smsFromStream = testSubscriber.onNextEvents[0]
+        assertNotNull(smsFromStream)
+        assertEquals(smsFromStream.date, currentDate)
     }
     @Test
     fun testScheduling_error(){
-        whenever(mockSmsScheduler.scheduleNextSms(any())).thenReturn(Observable.just(false))
+        whenever(mockSmsRepository.storeNextSms(any())).thenReturn(Observable.just(false))
 
         model.schedule(Date())
 
@@ -73,10 +78,11 @@ class ModelTest {
     }
     @Test
     fun testUnScheduling_OK() {
-        whenever(mockSmsScheduler.unscheduleNextSms(any())).thenReturn(Observable.just(true))
+        whenever(mockSmsRepository.removeSms(any())).thenReturn(Observable.just(true))
 
         model.unSchedule()
 
+        verify(mockSmsScheduler).unscheduleNextSms(any())
         testSubscriber.assertNotCompleted()
         testSubscriber.assertNoErrors()
         assertNull(testSubscriber.onNextEvents[0])
@@ -84,10 +90,11 @@ class ModelTest {
 
     @Test
     fun testUnScheduling_error() {
-        whenever(mockSmsScheduler.unscheduleNextSms(any())).thenReturn(Observable.just(false))
+        whenever(mockSmsRepository.removeSms(any())).thenReturn(Observable.just(false))
 
         model.unSchedule()
 
+        verify(mockSmsScheduler).unscheduleNextSms(any())
         testSubscriber.assertNotCompleted()
         testSubscriber.assertError(Model.SchedulingException::class.java)
     }

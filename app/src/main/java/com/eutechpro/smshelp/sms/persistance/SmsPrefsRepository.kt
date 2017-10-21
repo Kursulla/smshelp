@@ -11,12 +11,12 @@ import java.util.*
 /**
  * Persist data in SharedPreferences
  */
-class AlarmSmsPrefsRepository(private val preferences: SharedPreferences) : AlarmSmsRepository, AnkoLogger {
+class SmsPrefsRepository(private val preferences: SharedPreferences) : SmsRepository, AnkoLogger {
     private val SMS_NUMBER = "SMS_NUMBER_KEY"
     private val SMS_MESSAGE = "SMS_MESSAGE"
     private val SMS_DATE = "SMS_DATE"
 
-    override fun storeNextAlarmSms(sms: Sms): Observable<Boolean> {
+    override fun storeNextSms(sms: Sms): Observable<Boolean> {
         return Observable.create<Boolean> {
             val stored = preferences.edit()
                     .putInt(SMS_NUMBER + sms.number, sms.number)
@@ -30,7 +30,7 @@ class AlarmSmsPrefsRepository(private val preferences: SharedPreferences) : Alar
         }
     }
 
-    override fun fetchNextAlarmSms(smsNumber: Int): Observable<Sms> {
+    override fun fetchNextSms(smsNumber: Int): Observable<Sms> {
         return Observable.create {
             val number = preferences.getInt(SMS_NUMBER + smsNumber, 0)
             val message = preferences.getString(SMS_MESSAGE + smsNumber, null)
@@ -44,25 +44,25 @@ class AlarmSmsPrefsRepository(private val preferences: SharedPreferences) : Alar
         }
     }
 
-    override fun removeAlarmSmsFromStorage(smsNumber: Int): Observable<Boolean> {
+    override fun removeSms(smsNumber: Int): Observable<Boolean> {
         return Observable.create<Boolean> {
             val removed = preferences.edit()
                     .remove(SMS_NUMBER + smsNumber)
                     .remove(SMS_MESSAGE + smsNumber)
                     .remove(SMS_DATE + smsNumber)
                     .commit()
-            info("removeAlarmSmsFromStorage:$removed")
+            info("removeSms:$removed")
             it.onNext(removed)
             it.onCompleted()
         }
     }
 
-    override fun modifyDateOfAlarmSms(smsNumber: Int, date: Date): Observable<Boolean> {
+    override fun modifyDateOfSms(smsNumber: Int, date: Date): Observable<Boolean> {
         return Observable.create<Boolean> {
             val modified = preferences.edit()
                     .putLong(SMS_DATE + smsNumber, date.time)
                     .commit()
-            info("modifyDateOfAlarmSms:$modified")
+            info("modifyDateOfSms:$modified")
             it.onNext(modified)
             it.onCompleted()
         }

@@ -23,14 +23,14 @@ class AlarmPrefsRepositoryTest {
     private val SMS_MESSAGE = "SMS_MESSAGE_TEST"
 
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var alarmRepository: AlarmSmsRepository
+    private lateinit var alarmRepository: SmsRepository
     private var testSubscriber = TestSubscriber<Sms>()
 
     @Before
     fun setUp() {
         val context = getInstrumentation().targetContext
         sharedPreferences = context.getSharedPreferences("test", Context.MODE_PRIVATE)
-        alarmRepository = AlarmSmsPrefsRepository(sharedPreferences)
+        alarmRepository = SmsPrefsRepository(sharedPreferences)
     }
 
 
@@ -41,7 +41,7 @@ class AlarmPrefsRepositoryTest {
         storeSmsJustForTest(sms)
 
         //When
-        alarmRepository.fetchNextAlarmSms(SMS_NUMBER).subscribe(testSubscriber)
+        alarmRepository.fetchNextSms(SMS_NUMBER).subscribe(testSubscriber)
         testSubscriber.awaitValueCount(1, 500, TimeUnit.MILLISECONDS)
 
         //Then
@@ -53,7 +53,7 @@ class AlarmPrefsRepositoryTest {
     @Test
     fun fetchNextSmsWhenThereIsNoSmsStored() {
         //Given
-        alarmRepository.fetchNextAlarmSms(SMS_NUMBER).subscribe(testSubscriber)
+        alarmRepository.fetchNextSms(SMS_NUMBER).subscribe(testSubscriber)
         testSubscriber.awaitValueCount(1, 500, TimeUnit.MILLISECONDS)
 
         //Then
@@ -70,7 +70,7 @@ class AlarmPrefsRepositoryTest {
         val testSubscriber = TestSubscriber<Boolean>()
 
         //When
-        alarmRepository.removeAlarmSmsFromStorage(SMS_NUMBER).subscribe(testSubscriber)
+        alarmRepository.removeSms(SMS_NUMBER).subscribe(testSubscriber)
         testSubscriber.awaitValueCount(1, 500, TimeUnit.MILLISECONDS)
 
         //Then

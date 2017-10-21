@@ -55,9 +55,9 @@ class HomeActivityTest {
 
         //Then
         onView(withId(R.id.heart)).check(matches(hasResource(R.drawable.heart_full)))
-        onView(withId(R.id.status_message)).check(matches(withText("Sledece slanje je \n27/April/1985")))
-        onView(withId(R.id.status_description)).check(matches(withText(R.string.scheduled_status_description)))
-        onView(withId(R.id.tmp_schedule_button)).check(matches(withText(R.string.scheduled_btn)))
+        onView(withId(R.id.statusMessage)).check(matches(withText("Sledece slanje je \n27/April/1985")))
+        onView(withId(R.id.statusDescription)).check(matches(withText(R.string.scheduled_status_description)))
+        onView(withId(R.id.scheduleBtn)).check(matches(withText(R.string.scheduled_btn)))
     }
 
     @Test
@@ -71,8 +71,8 @@ class HomeActivityTest {
 
         //Then
         onView(withId(R.id.heart)).check(matches(hasResource(R.drawable.heart_broken)))
-        onView(withId(R.id.status_message)).check(matches(withText(R.string.not_scheduled_status_title)))
-        onView(withId(R.id.status_description)).check(matches(withText(R.string.not_scheduled_status_description)))
-        onView(withId(R.id.tmp_schedule_button)).check(matches(withText(R.string.not_scheduled_btn)))
+        onView(withId(R.id.statusMessage)).check(matches(withText(R.string.not_scheduled_status_title)))
+        onView(withId(R.id.statusDescription)).check(matches(withText(R.string.not_scheduled_status_description)))
+        onView(withId(R.id.scheduleBtn)).check(matches(withText(R.string.not_scheduled_btn)))
     }
 }

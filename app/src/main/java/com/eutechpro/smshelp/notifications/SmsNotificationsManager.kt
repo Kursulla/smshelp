@@ -1,4 +1,4 @@
-package com.eutechpro.smshelp.sms
+package com.eutechpro.smshelp.notifications
 
 import android.app.NotificationManager
 import android.content.Context
