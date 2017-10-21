@@ -1,5 +1,7 @@
 package com.eutechpro.smshelp.home
 
+
+import com.eutechpro.smshelp.Constants
 import com.eutechpro.smshelp.scheduler.SendingSmsScheduler
 import com.eutechpro.smshelp.sms.Sms
 import com.eutechpro.smshelp.sms.persistance.SmsRepository
@@ -10,11 +12,10 @@ import java.util.*
 
 
 open class Model(private val smsAlarmScheduler: SendingSmsScheduler, private val repository: SmsRepository) : Mvp.Model, AnkoLogger {
-    private val SMS_NUMBER = 1234
     private val smsStream: PublishSubject<Sms> = PublishSubject.create()
 
     override fun checkStatus(){
-        repository.fetchNextSms(SMS_NUMBER).subscribe(
+        repository.fetchNextSms(Constants.SMS_NUMBER).subscribe(
                 { sms ->
                     smsStream.onNext(sms)
                 },
@@ -27,7 +28,7 @@ open class Model(private val smsAlarmScheduler: SendingSmsScheduler, private val
     override fun getNextScheduledSmsStream(): Observable<Sms> = smsStream
 
     override fun schedule(dateForAlarm: Date) {
-        val sms = Sms(SMS_NUMBER, dateForAlarm, "")//Right now It does not matter what we send
+        val sms = Sms(Constants.SMS_NUMBER, dateForAlarm, "")//Right now It does not matter what we send
         smsAlarmScheduler.scheduleNextSms(sms)
         repository.storeNextSms(sms).subscribe { scheduled ->
                     if (scheduled) {
@@ -39,8 +40,8 @@ open class Model(private val smsAlarmScheduler: SendingSmsScheduler, private val
     }
 
     override fun unSchedule() {
-        smsAlarmScheduler.unscheduleNextSms(SMS_NUMBER)
-        repository.removeSms(SMS_NUMBER)
+        smsAlarmScheduler.unscheduleNextSms(Constants.SMS_NUMBER)
+        repository.removeSms(Constants.SMS_NUMBER)
                 .subscribe { removed ->
                     if (removed) {
                         smsStream.onNext(null)
